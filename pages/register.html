@@ -9,7 +9,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/template.css" >
+  <link rel="stylesheet" type="text/css" href="css/register.css">
   <script src="js/template.js"></script>
+  <script src="js/register.js"></script>
   
 </head>
 
@@ -46,11 +48,13 @@
 
 
 		<!-- Main content.. Put your content here!!-->
-		<div class=" main col-lg-10 col-md-9 col-sm-8" style="background-color:#EFEFEF">
+		<div class=" main col-lg-10 col-md-9 col-sm-8" >
         <div class="row">
-            <div class="col-md-8 col-sm-6">
-              <p class="modal-text">Already has an account with us? <a class="login-link" href="#">Log In here</a></p>
+            <div class="col-md-8 col-sm-8">
+              
               <form id="registration-form" action="#" method="POST">
+                <h2>Register</h2>
+                <p class="regis-text">Already has an account with us? <a class="login-link" data-toggle="modal" href="#myLoginModal">Log In here</a></p>
                 <div class="form-row form-pad">
                     <label for="" class="modal-text big">
                         Email
@@ -75,9 +79,12 @@
                   </label>
                   <input type="password" class="form-control" name="confirmPassword" >
               </div>
-              
-                <input type="button" class="register btn btn-register" name="register" value="REGISTER" >
-                <button type="button" class="btn btn-register" data-dismiss="modal">CANCEL</button>             
+               <div class="form-row form-pad">
+                                       
+                 <label><input type="checkbox" value="" name="policy"> I accept the <span><a href="#">Terms of Use</a></span> and <span><a href="#">Privacy Notice</a></span></label> 
+            </div>
+                <input type="button" class="register btn btn-register" id="register" name="register" value="REGISTER" >
+                         
           </form>
             </div>
           </div>
@@ -114,12 +121,9 @@
                   </label>
                   <input type="password" class="form-control" name="password" >
               </div>
-              <div class="form-row checkbox">
-                                       
-                 <label><input type="checkbox" value="">I accept the <span><a href="#">Terms of Use</a></span> and <span><a href="#">Privacy Notice</a></span></label> 
-            </div>
+             
               
-                <input type="button" class="register btn btn-register" name="register" value="REGISTER" >
+                <input type="button" class="login btn btn-login" name="login" value="LOG IN" >
                 <button type="button" class="btn btn-login" data-dismiss="modal">CANCEL</button>             
           </form>
             </div>

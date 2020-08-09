@@ -1,4 +1,63 @@
-*{
+.centered{
+
+    /*position: center;*/
+    text-align: center;
+}
+
+.header{
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
+
+.card-header{
+    padding-top: 55px;
+    padding-bottom: 15px;
+}
+
+.price-tag{
+    text-align: center;
+    font-size: 25px;
+    padding-bottom: 10px;
+}
+
+.description{
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.card-1{
+    background-color: #EFEFEF;
+}
+
+.card-2{
+    background-color: #EFEFEF;
+}
+
+.card-3{
+    background-color: #EFEFEF;
+
+}
+.card{
+    height: 60vh;
+}
+
+.btn-submit-vehicle{
+   background-color: #b70b1f;
+   width: 90%;
+   color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+/**{
     margin:0px;
      
      
@@ -162,4 +221,4 @@ hr {
      text-align: left;
      margin: 2%;
 
- }
+ }*/

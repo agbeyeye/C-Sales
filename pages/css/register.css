@@ -1,0 +1,14 @@
+#registration-form{
+	padding-left: 55px;
+	padding-top: 25px;
+}
+
+.form-pad{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#register{
+	background-color: #b70b1f;
+	color: white;
+}
