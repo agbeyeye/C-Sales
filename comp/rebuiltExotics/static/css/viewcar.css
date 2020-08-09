@@ -1,0 +1,465 @@
+*{
+    margin:0px;
+     
+     
+
+    
+}
+
+.main{
+    
+    display:flex;
+    width: 100%;
+    
+    height: 185vh;
+    background-color: #EFEFEF;
+     
+    
+} 
+.sidebar
+{
+     
+    width:20%;
+    background-color: #ffff;
+    display: flex;
+    height:185vh;
+    justify-content: center;
+    align-content: center;
+    
+    
+    
+}
+.navbar a
+{
+    display: flex;
+    padding:2px;
+    color:#707070;
+    align-content: space-between; 
+    font-size: medium;
+    text-decoration: none;
+    justify-content: flex-start;
+}   
+ .pages
+ {
+     display: flex;
+     flex-direction: column;
+     margin-left:20px;
+    
+ }
+.Pagination
+{
+    display: flex;
+flex-direction: column;     
+    
+}
+#person
+{
+    display: flex;
+ 
+    height: 60px;
+    width: 30px;
+   
+    border-radius: 50%;
+}
+ 
+.sidelist 
+{
+    display: flex;
+     
+    
+    flex-direction: column;    
+
+}
+.title
+{
+    display: flex;
+    padding-top:15px;
+    padding-bottom: 15px; 
+    font-weight: bold;
+    color:#707070;
+    font-size: 55px;
+    }
+.site-view
+{
+     
+    height: 185vh;
+    width:80%;
+    display:flex;
+    flex-direction: column;
+    background-color: #00000029;
+}
+.list-element
+{
+    display: flex;
+    flex-direction: column;
+}
+.overview
+{
+    
+     
+   
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-position: center;   
+    background-color:#cccc; 
+    height: 50vh;
+   
+     
+    
+     
+
+}
+.navigation
+{
+    display: flex;
+   
+    padding-left: 50px;
+   
+     
+    color:#707070;
+    margin: 10px;
+
+}
+.btn-1
+{
+    background-color:#cccc; 
+}
+#drops
+{
+    display: flex;
+    
+    margin-right: 150px;
+    background-color:#cccc; 
+}
+.dropdown-item
+{
+    display: flex;
+    background-color:#cccc; 
+}
+.sample-cars
+{
+    display: flex;
+     
+    flex-direction: column;
+    justify-content: space-between;
+     margin-top: 30px;
+      
+     
+    height: 150vh;
+    width:100%;
+   
+}
+.form{
+    display: flex;
+    width: 500px;
+    margin-left: 30px;
+   margin-top: 40px; 
+     
+      
+}
+#car 
+ {
+     display: flex;
+     justify-content: center;
+     height:60px;
+     width: 120px;
+ }
+input 
+{
+    width: 600px;
+    border-radius: 2px;
+}
+ 
+.recently
+{
+     
+    height:40vh;
+    display: flex;
+    flex-direction: column; 
+  
+    
+    justify-content: space-around;
+    align-content: center;
+
+ 
+    
+    
+   margin-top: -30px;
+  
+ 
+     
+ }
+ #cars-title,#view
+ {
+     font-size: medium;
+     
+     font-weight: 400;
+      
+ }
+  
+ 
+ 
+ 
+
+ 
+.list-cars
+{
+    
+    display: flex;
+  
+    
+    
+}
+ li {
+      
+     display: flex;
+     border-radius: 2px;
+     flex-direction: column;
+     margin-left:-40px;
+     width: 150px;
+     justify-content: space-evenly;
+align-items: center;  
+ 
+     
+     background-color: rgb(236, 225, 225)
+ }
+
+ #car 
+ {
+     display: flex;
+     justify-content: center;
+     height: 80px;
+     width: 100px;
+ }
+ 
+ #model,#price,#loc
+ {
+     font-size: medium;
+     font-weight: 200;
+ }
+ footer
+ {
+     height: 10vh;
+     background-color:yellow;
+     display: flex;
+
+ }
+
+ .car-overview
+ {
+     display: flex;
+     margin:3.0%;
+      
+     height: 150vh;
+      width: 96%;
+     background-color: #FFFFFF;
+     
+     
+     justify-content: center;
+ }
+ .car-profile
+ {
+     width: 30%;
+     display: flex;
+     flex-direction:column;
+    
+     border-color: #EFEFEF;
+     margin-left: 20px;
+     margin-top: 2%;
+     height: 100vh;
+     background-color: #ffff;
+ }
+ #car-details
+ {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     align-items: center;
+      font-size:34px;
+     height: 45px;
+     margin-bottom: 60px;
+ }
+ #contact
+ {
+     display: flex;
+     font-size: 14px;
+     font-family: 'Segoe UI';
+     color: #C4BAA1;
+     justify-content: center;
+     font-weight: bold;
+ }
+ .car-prop
+ {
+    border-top-style: none;
+     
+  
+ }
+ #more-info 
+ {
+     display: flex;
+     flex-direction: column;
+    
+      text-align: inherit; 
+    border:none;
+ 
+     
+ }
+
+ .main-view
+ {
+     height: 50vh;
+     width:100%;
+     margin-top: 2%;
+     
+     display: flex;
+     justify-content: center;
+ }
+ #car-main-pic
+ {
+     display: flex;
+     width:100%;
+
+ }
+ #car-side
+ {
+     height: 100px;
+     width: 100px;
+
+ }
+ .side-views
+ {
+     display: flex;
+     height:  16vh;
+     justify-content: space-between;
+     margin-top:  1%;
+     margin-bottom:1%;
+      
+      
+    
+ }
+ .car-sides
+ {
+     display: flex;
+     height: 30px;
+     
+
+     
+   
+     
+ }
+ #horizontal-bar
+ {
+     background-color: #7D7D7D;
+     margin-top: -10px;
+ }
+ #car-year
+ {
+     color: #C4BAA1;
+ }
+ #car-price
+ {
+     color:#C4BAA1;
+ }
+ #car-name
+ {
+     color:black;
+     font-weight: 200;
+     
+ }
+ #owner-profile
+ {
+     display:flex;
+     margin-top: 70px;
+     flex-direction: row;
+     justify-content: center;
+     border-radius: 50%;
+ }
+ #own-name
+ {
+     font-weight: 200;
+ }
+ .short-note
+ {
+     display: flex;
+     flex-direction:row;
+      justify-items: center;
+      width:250px;
+      margin-left: 24px;
+     border: none;
+      
+     text-align: center;
+    
+
+ }
+  
+ .table
+ {
+     height: 40px;
+     width: 40px;
+ }
+ 
+.owner-picture
+ {
+     height: 30px;
+     width:30px;
+     margin-right: 13px;
+     border-radius: 50%;
+ }
+ #data
+ {
+     font-size: 15px;
+
+ }
+  
+   
+ .car-picture
+ {
+    
+      width: 67%;
+      
+      
+ }
+ .custom-cards
+ {
+     display: flex;
+     height: 16px;
+    
+     justify-content: space-between;
+     
+      
+ }
+      
+ .shape
+ {
+     display: flex;
+     height: 16px;
+     background-color: #EFEFEF;
+     width: 16px;
+     justify-content: space-between;
+     width: 50%;
+ }
+
+  
+ .header-text
+{
+    display: flex;
+    justify-content: space-between;
+    
+
+}
+.cards{
+      
+    display: flex;
+    border-radius: 2px;
+    flex-direction: column;
+    margin: 20px;
+    width:160px;
+    height:200px;
+    margin-left: 30px;
+align-items: center;  
+text-align: center;
+
+    
+    background-color: rgb(247, 247, 247)
+}
+ 

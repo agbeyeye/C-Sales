@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Car Details</title>
+	<link rel="stylesheet" type="text/css" href="css/car-detail.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	
+	<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/template.css" >
+	<link rel="stylesheet" type="text/css" href="css/image-upload.css">
+</head>
+<body>
+    <div class="container">
+        <div class=" side-bar col-lg-2 col-md-3 col-sm-4">
+            <div class="row">
+                <p class="title">Rebuild Exotics</p>
+                <hr>
+            </div>
+            
+            <div class="row">
+                 <nav class="navbar flex-row navbar">
+                    <a class="nav-link selected" href="index.html">Home</a>
+                    <a class="nav-link" href="#!">Submit a vehicle</a>
+                    <a class="nav-link" href="#!">About</a>
+                    <a class="nav-link" href="#!">Contacts</a>
+                    <a class="nav-link" href="#!">Sold Vechiles</a>
+                    <hr class="hr-color">
+                  </nav>
+
+
+                  <nav class="navbar flex-row profile">
+                    <a class="nav-link selected" href="#!">Messages</a>
+                    <a class="nav-link" href="#!">Watchlist</a>
+                    <a class="nav-link" href="#!">My Listings</a>
+                    <a class="nav-link" href="#!">Settings</a>
+                     <a class="nav-link" data-toggle="modal" href="#myLoginModal"><span class="sign-color">Sign In</span></a>
+                    <a class="nav-link" href="register.html">Register</a>
+                  </nav>
+            </div>
+        </div>
+
+
+        <!-- Main content.. Put your content here!!-->
+        <div class=" main col-lg-10 col-md-9 col-sm-8" >
+                <div class="row">
+                    <div class="col-sm-12 col-md-8 col-lg-6 fm-mg">
+                        <h3>Submit details of your vehicle here</h3>
+                        <form id="carForm">
+                             <!-- progressBar -->
+                            <ul id="progressbar">
+                                <li class="active" id="make"><a href="#">Make & Model</a></li>
+                                <li id="info"><a href="#">Basic Info</a></li>
+                                <li id="details"><a href="#">Details</a></li>
+                                <li id="confirm"><a href="#">Finish</a></li>
+                            </ul>
+                            <!-- sections -->
+                            <section>
+                            <div class="form-row">
+                                <label for="">
+                                Vehicle Year *
+                                </label>
+                                <div class="form-holder">
+                                <select name="vehicle_year" id="vehicle_year" class="form-control" >
+                                    <option value="" class="option">choose</option>
+                                    <option value="united states" class="option">United States</option>
+                                    <option value="united kingdom" class="option">United Kingdom</option>
+                                </select>
+                                <i class="zmdi zmdi-caret-down"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                                <label for="">
+                                Vehicle Make *
+                                </label>
+                                <div class="form-holder">
+                                <select name="vehicle_make" id="vehicle_make" class="form-control">
+                                    <option value="" class="option">choose</option>
+                                    <option value="united states" class="option">United States</option>
+                                    <option value="united kingdom" class="option">United Kingdom</option>
+                                </select>
+                                <i class="zmdi zmdi-caret-down"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <label for="">
+                                Engine *
+                            </label>
+                            <input type="text" class="form-control" name="engine" >
+                        </div>  
+                        <div class="form-row">
+                            <label for="">
+                                Transmission *
+                            </label>
+                            <input type="text" class="form-control" name="transmission">
+                        </div>
+                        <div class="form-row">
+                            <label for="">
+                                Drivetrain *
+                            </label>
+                            <input type="text" class="form-control" name="drive_train">
+                        </div>
+                        <div class="form-row">
+                                <label for="">
+                                What country is the vehicle currently located in? *
+                                </label>
+                            <div class="form-holder">
+                                <select name="country" id="" class="form-control">
+                                    <option value="" class="option">choose</option>
+                                    <option value="united states" class="option">United States</option>
+                                    <option value="united kingdom" class="option">United Kingdom</option>
+                                </select>
+                                <i class="zmdi zmdi-caret-down"></i>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label for="">
+                                Town / City *
+                            </label>
+                            <input type="text" class="form-control" name="city">
+                        </div>
+                        <div class="form-row">
+                                <label for="">
+                                Type of seller *
+                                </label>
+                            <div class="form-holder">
+                                <select name="seller" id="" class="form-control">
+                                    <option value="" class="option">choose</option>
+                                    <option value="viet nam" class="option">Dealer/Private</option>
+                                    <option value="united states" class="option">Youtuber</option>
+                                    <!-- <option value="united kingdom" class="option">United Kingdom</option> -->
+                                </select>
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-row upload">
+                            <label for="">
+                                Car Images*
+                                </label>
+                            <fieldset class="form-group">
+                                <a href="javascript:void(0)" onclick="$('#pro-image').click()" class="btn btn-primary">Browse</a>
+                                <input type="file" id="pro-image" name="pro_image" style="display: none;" class="form-control" multiple>
+                            </fieldset>
+                            <div class="preview-images-zone">
+                                
+                               
+                            </div>
+                        </div>
+                         <input type="button" name="next" class="next action-button" value="Next Step"  />
+                    </section>
+                    
+                    <!-- second section -->
+                    <section>
+                            <div class="form-row form-group">
+                                <div class="form-holder">
+                                        <label for="">
+                                        Chassis Number/VIN? *
+                                        </label>
+                                        <input type="text" class="form-control" name="vin">
+                                    </div>
+                                <div class="form-holder">
+                                        <label for="">
+                                        Current Miles/Kilometers *
+                                        </label>
+                                        <input type="text" class="form-control" name="milleage">
+                                    </div>
+                                <div class="form-holder">
+                                        <label for="">
+                                        Vehicle's Title *
+                                        </label>
+                                        <input type="text" class="form-control" name="title">
+                                    </div>
+                                <div class="form-holder">
+                                        <label for="">
+                                        Fuel Type *
+                                        </label>
+                                        <input type="text" class="form-control" name="fuel_type">
+                                    </div>
+                                <div class="form-holder">
+                                        <label for="">
+                                        Trim *
+                                        </label>
+                                        <input type="text" class="form-control" name="trim">
+                                </div>
+                                <div class="form-holder">
+                                        <label for="">
+                                        Exterior Color *
+                                        </label>
+                                        <input type="text" class="form-control" name="exterior_color">
+                                </div>
+                                <div class="form-holder">
+                                        <label for="">
+                                        Interior Color *
+                                        </label>
+                                        <input type="text" class="form-control" name="interior_color">
+                                </div>
+                                
+                                </div>
+                                 <input type="button" name="previous" class="previous action-button" value="Previous Step"/>
+                                  <input type="button" name="next" class="next action-button" value="Next Step"  />
+                            </section>
+
+                             <!-- third section -->
+                            <section>
+                            <div class="form-row form-group">
+                                <div class="form-holder">
+                                        <label for="">
+                                        Asking Price *
+                                        </label>
+                                        <input type="text" class="form-control" name="asking_price">
+                                </div>
+                                <div class="form-holder checkbox">
+                                       
+                                     <label><input type="checkbox" value="">Price Negotiable</label> 
+                                </div>
+
+                               <div class="form-row">
+                                    <label for="">
+                                    Wheel Alignment? *
+                                    </label>
+                                    <div class="form-holder">
+                                        <select name="wheel_alignment" id="" class="form-control">
+                                        <option value="choose" class="option">Choose</option>
+                                        <option value="yes" class="option">Yes</option>
+                                        <option value="no" class="option">No</option>
+                                        <option value="unknown" class="option">Unknown</option>
+                                    </select>
+                                
+                                    </div>
+                                </div>
+
+                                <div class="form-holder">
+                                    
+                                  <label for="upgrade">Specify any upgrade</label>
+                                  <textarea class="form-control" rows="4" id="upgrade" name="upgrade"></textarea>
+                                     
+                                </div>
+
+                                 <div class="form-holder">
+                                    
+                                  <label for="repair">Specify any repair made</label>
+                                  <textarea class="form-control" rows="4" id="repair" name="repair"></textarea>
+                                     
+                                </div>
+
+                                 <div class="form-holder">
+                                    
+                                  <label for="service">Recent Service</label>
+                                  <textarea class="form-control" rows="4" id="service" name="service"></textarea>
+                                     
+                                </div>
+
+                                 <div class="form-holder">
+                                    
+                                  <label for="flaws">Known Flaws</label>
+                                  <textarea class="form-control" rows="4" id="flaws" name="flaws"></textarea>
+                                     
+                                </div>
+
+                                                               
+                                </div>
+                                 <input type="button" name="previous" class="previous action-button" value="Previous Step"/>
+                                  <input type="button" name="next" class="next action-button" value="Next Step"  />
+                            </section>
+
+                            <!-- fourth section -->
+                            <section>
+                                <div class="form-row form-group">
+                                    <div class="form-holder">
+                                        <label for="">
+                                        Email *
+                                        </label>
+                                        <input type="text" class="form-control" name="email">
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-group">
+                                    <div class="form-holder">
+                                        <label for="">
+                                        Username *
+                                        </label>
+                                        <input type="text" class="form-control" name="username">
+                                    </div>
+                                </div>
+                                       <div class="form-row form-group">
+                                    <div class="form-holder">
+                                        <label for="">
+                                        Password *
+                                        </label>
+                                        <input type="password" class="form-control" name="password">
+                                    </div>
+                                </div>
+                                <div class="form-row form-group">
+                                    <div class="form-holder">
+                                        <label for="">
+                                        Confirm Password *
+                                        </label>
+                                        <input type="password" class="form-control" name="confirm_password">
+                                    </div>
+                                </div>
+                                <div class="form-row form-group">
+                                    <div class="form-holder">
+                                        <label for="">
+                                        Name *
+                                        </label>
+                                        <input type="text" class="form-control" name="name">
+                                    </div>
+                                </div>
+                                <div class="form-row form-group">
+                                    <div class="form-holder">
+                                        <label for="">
+                                        Contact *
+                                        </label>
+                                        <input type="text" class="form-control"  name="contact">
+                                    </div>
+                                </div>
+                                 <input type="button" name="previous" class="previous action-button" value="Previous Step"/>
+                                  <input type="button" name="submit" class="submit action-button" value="Submit"/>
+                            </section>
+                        </form>
+                    </div>
+
+                    <!-- side container images -->
+                    <div class="sideImages col-lg-4">
+                        <div class="cars-aside">
+                            <hr>
+                            <p>Recently added on Rebuilt Exotics<p>
+                            <!-- first image -->
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card flip-card">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-front">
+                                                <img class="card-img" src="images/car2.jpg" alt="Card image cap">
+                                            </div>
+                                            <div class="flip-card-back">
+                                                fdgfsdgfsgdsf
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                     <div class="card flip-card">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-front">
+                                                <img class="card-img" src="images/car2.jpg" alt="Card image cap">
+                                            </div>
+                                            <div class="flip-card-back">
+                                                fdgfsdgfsgdsf
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card flip-card">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-front">
+                                                <img class="card-img" src="images/car2.jpg" alt="Card image cap">
+                                            </div>
+                                            <div class="flip-card-back">
+                                                fdgfsdgfsgdsf
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                     <div class="card flip-card">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-front">
+                                                <img class="card-img" src="images/car2.jpg" alt="Card image cap">
+                                            </div>
+                                            <div class="flip-card-back">
+                                                fdgfsdgfsgdsf
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card flip-card">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-front">
+                                                <img class="card-img" src="images/car2.jpg" alt="Card image cap">
+                                            </div>
+                                            <div class="flip-card-back">
+                                                fdgfsdgfsgdsf
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                     <div class="card flip-card">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-front">
+                                                <img class="card-img" src="images/car2.jpg" alt="Card image cap">
+                                            </div>
+                                            <div class="flip-card-back">
+                                                fdgfsdgfsgdsf
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                     <div class="card flip-card">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-front">
+                                                <img class="card-img" src="images/car2.jpg" alt="Card image cap">
+                                            </div>
+                                            <div class="flip-card-back">
+                                                fdgfsdgfsgdsf
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card flip-card">
+                                        <div class="flip-card-inner">
+                                            <div class="flip-card-front">
+                                                <img class="card-img" src="images/car2.jpg" alt="Card image cap">
+                                            </div>
+                                            <div class="flip-card-back">
+                                                fdgfsdgfsgdsf
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- second image -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+  </div>
+	
+    <script src="js/car-details.js"></script>
+	
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="js/image-upload.js"></script>
+
+   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.js"></script>
+</body>
+</html>

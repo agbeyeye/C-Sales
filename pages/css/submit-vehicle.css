@@ -1,0 +1,165 @@
+*{
+    margin:0px;
+     
+     
+
+    
+}
+
+.main{
+    
+    display:flex;
+    
+    height: 100vh;
+     
+    
+} 
+.sidebar
+{
+     
+    width:20%;
+    background-color:#FFFFFF;
+    display: flex;
+    height:100vh;
+    justify-content: center;
+    align-content: center;
+    
+    
+    
+}
+.navbar a
+{
+    display: flex;
+    padding:2px;
+    color:#707070;
+    align-content: space-between; 
+    font-size: medium;
+    text-decoration: none;
+    justify-content: flex-start;
+}
+.title
+{
+    display: flex;
+    padding-top:15px;
+    padding-bottom: 15px; 
+    font-size:30px;
+    color:#707070;
+}
+#person
+{
+    display: flex;
+ 
+    height: 40px;
+    width: 40px;
+    padding-bottom: 10px;
+}
+ 
+.sidelist 
+{
+    display: flex;
+    color:#707070;
+    
+    flex-direction: column;    
+
+}
+.site-view
+{
+     
+    height: 100vh;
+    width:100%;
+     display:flex;
+     flex-direction: column;
+    background-color: #EFEFEF;
+  
+}
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid #C4BAA1;
+  }
+.overview
+{
+    display: flex;
+    
+    flex-direction: column;
+    
+      
+
+     
+    height: 20vh;
+     
+    width: 100%;
+      
+
+}
+.form{
+    display: flex;
+    width: 500px;
+    margin-left: 30px;
+   margin-top: 40px;    
+     
+     
+      
+}
+ .submit-options
+ {
+     display: flex;
+     height: 80vh;
+     flex-direction: column;
+     margin: 3%;
+     
+ }
+ .card-group
+ {
+     display: flex;
+     height: 70vh;
+     justify-content: space-between;
+
+ }
+ .card
+ {
+     display: flex;
+
+     flex-direction: column;
+     ;
+     margin:1%;
+     width: 300px;
+     text-align: center;
+     align-items: center;
+     background: #FFFFFF 0% 0% no-repeat padding-box;
+     border-radius: 10px;
+ }
+ .card-body
+ {
+     display: flex;
+     flex-direction: column;
+ }
+ .card-text
+ {
+     font-size: 25px;
+     font-weight: bold;
+     color:#C4BAA1;
+     opacity: 1;
+ }
+ .submission-type
+ {
+     font-size: 20px;
+     font-weight: bold;
+     color: #707070;
+ }
+ .price-tag
+ {
+     font-size: 15px;
+     font-weight: bold;
+   
+     color:#C4BAA1;
+ }
+ .description
+ {
+     font-size: 14px;
+     color:#707070;
+     text-align: left;
+     margin: 2%;
+
+ }

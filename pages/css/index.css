@@ -1,0 +1,108 @@
+.page-intro{
+	height: 60vh;
+	width: 100%;
+	background-image: url('../images/car6.jpg');
+	object-fit:fill;
+	background-size: 100% 100%;
+}
+
+.search-form{
+    width: 80%;
+}
+
+
+.search-row{
+	padding-top: 30px;
+    padding-left: 35px;
+}
+
+#welcome-msg{
+	font-size: 40px;
+	color: white;
+	font-weight: bold;
+	padding-left: 35px;
+}
+
+/*car images*/
+img{
+	width: 100%;
+	height: 100%;
+	object-fit:fill;
+	/*display: block;*/
+}
+
+.vehicle-set{
+	background-color: #EFEFEF;
+	margin-top: 15px;
+	padding-bottom: 20px;
+}
+
+.car-description{
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 50px;
+}
+
+.view-cars{
+	float: right;
+}
+
+.card-img-top{
+	padding: 5px;
+}
+
+.card-text{
+	font-weight: bold;
+	text-align: center;
+}
+
+
+.view-btn{
+	text-align: center;
+	position: center;
+
+}
+
+
+.price{
+	color: #b70b1f;
+}
+
+.card{
+	font-size: 12px;
+	text-align: center;
+	margin: 2px;
+	background-color: white;
+	padding-bottom: 5px;
+}
+
+@media screen and (max-width: 1920px) {
+ 	.side-bar {	
+		height: 100vh;
+	}
+	.main{
+		height: 100vh;
+	}
+
+}
+
+@media screen and (max-width: 700px) {
+  .side-bar  {
+   width: 100%;
+   height: auto;
+  }
+  .main{
+  	width:100%;
+  	float: right;
+  }
+
+  .page-intro{
+  	height: 50%;
+  }
+
+  .card{
+  	width: 100%;
+  }
+}
+
+/*Carousel*/

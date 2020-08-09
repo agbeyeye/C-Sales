@@ -1,0 +1,125 @@
+.side-bar{
+	/*padding-left: 45px;*/
+	margin-top: 30px;
+	color:#707070;
+} 
+
+.title{
+	
+	
+	font-size: 30px;
+	/*margin-bottom: 10px;*/
+	padding-right: 0px;
+	color: #b70b1f;
+}
+
+.navbar a
+{
+    display: flex;
+    padding:2px;
+    color:#707070;
+    align-content: space-between; 
+    font-size: medium;
+    text-decoration: none;
+    justify-content: flex-start;
+}
+
+ hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid #C4BAA1;
+    margin-right: 35px;
+    height: 1px;
+  }
+
+.hr-color{
+	background-color: #b70b1f;
+}
+
+.sign-color{
+	color: #b70b1f;
+}
+
+.btn-color{
+	background-color: #504234;
+	color: white;
+
+}
+
+/*login modal*/
+.modal-content{
+    height: 90vh;
+}
+
+.modal-header{
+    background-color: #b70b1f;
+}
+
+.modal-title {
+    color: white;
+    text-align: center;
+}
+
+#myLoginModal{
+    /*width: 80%;*/
+}
+
+
+@media screen and (max-width: 1920px) {
+    .side-bar { 
+        height: 100vh;
+    }
+    .main{
+        height: 100vh;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+  .side-bar  {
+   width: 100%;
+   height: auto;
+  }
+  .main{
+    width:100%;
+    float: right;
+  }
+}
+
+.btn-login{
+    margin-top: 5px;
+    background-color: #b70b1f;
+     color:white;
+}
+
+.form-pad{
+    margin-bottom: 7px;
+
+}
+
+.login-link{
+    text-decoration: none;
+}
+
+#login-form{
+    margin-left: 15px;
+}
+
+.login-label{
+    margin-left: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.modal-text{
+    font-size: 12px;
+}
+
+.big{font-size: 14px;}
+
+/*form validation error*/
+form .error {
+  color: #ff0000;
+  font-size: 12px;
+}
