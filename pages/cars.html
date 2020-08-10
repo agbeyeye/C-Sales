@@ -1,373 +1,388 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+  <title>Exotics</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="css/cars.css" >
-    <title>Exotic Site-Home</title>
+  <link rel="stylesheet" href="css/template.css" >
+  <script src="js/template.js"></script>
+  <script src="js/cars.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/cars.css">
+  
 </head>
+
 <body>
-    <div class="main">
-        <div class="sidebar">
-            <div class="container">
-                <p class="title">Rebuilt Exotics</p>
-                <hr>
-                <nav class="navbar flex-row navbar">
-                    <a class="nav-link active" href="#!">Home</a>
-                    <a class="nav-link" href="#!">Submit a vehicle</a>
+  <div class="container">
+    <div class=" side-bar col-lg-2 col-md-3 col-sm-4">
+      <div class="row">
+        <p class="title">Rebuild Exotics</p>
+        <hr>
+      </div>
+      
+      <div class="row">
+         <nav class="navbar flex-row navbar">
+                    <a class="nav-link active" href="index.html">Home</a>
+                    <a class="nav-link" href="submit-vehicle.html">Submit a vehicle</a>
                     <a class="nav-link" href="#!">About</a>
                     <a class="nav-link" href="#!">Contacts</a>
                     <a class="nav-link" href="#!">Sold Vechiles</a>
-                    <hr>
+                    <hr class="hr-color">
                   </nav>
 
 
                   <nav class="navbar flex-row profile">
-                      <img src="/comp/pages/images/person.jpeg"  class="rounded-circle person" alt="profile ">
+                      <!-- <img class="rounded" id="person" src="./images/person.jpeg" alt="profile "> -->
                     <a class="nav-link active" href="#!">Messages</a>
-                    <a class="nav-link" href="#!">Saved vehicles</a>
-                    <a class="nav-link" href="#!">My ads</a>
+                    <a class="nav-link" href="#!">Watchlist</a>
+                    <a class="nav-link" href="#!">My Listings</a>
                     <a class="nav-link" href="#!">Settings</a>
-                    <a class="nav-link" href="#!">Sign out</a>
-                    
+                    <a class="nav-link" data-toggle="modal" href="#myLoginModal"><span class="sign-color">Sign In</span></a>
+                    <a class="nav-link" href="register.html">Register</a>
                   </nav>
-               
-             
-            </div>
-           
+      </div>
+    </div>
+
+
+    <!-- Main content.. Put your content here!!-->
+    <div class="main col-lg-10 col-md-9 col-sm-8" >
+    <!-- row for ordering combo box -->
+      <div class="row">
+        <div class="col-lg-4 col-md-8 col-sm-12">
+          <div class="sort-row">
+            <label for="">
+              Sort By:
+            </label>
+            <div class="form-holder">
+              <select name="vehicle_year" id="vehicle_year" class="form-control" >
+                <option value="mostViewed" class="option">Most Viewed</option>
+                <option value="recent" class="option">Newly Listed</option>
+                <option value="lowPrice" class="option">Lowest Price</option>
+                <option value="highPrice" class="option">Highest Price</option>
+                <option value="newestYear" class="option">Newest Year</option>
+                <option value="oldestYear" class="option">Oldest Year</option>
+                <option value="distanceNearestFirst" class="option">Distance Nearest First</option>
+              </select>
+              <i class="zmdi zmdi-caret-down"></i>
+          </div>
         </div>
-        <div class="site-view">
-            <div class="overview">
-                <nav class="navbar navbar-light bg-light">
-                    <form class="form">
-                      <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                      <button class="btn btn-outline-success my-2 my-sm-0 bg-primary" type="submit">Search</button>
-                    </form>
-                   <!-- <nav class="navbar">
-                       <u class="navigation">
-                           <li id="drops">
-                            <div class="dropdown">
-                                <button class="btn-1"
-                                        type="button" id="dropdownMenu1" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                  Price
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                  <a class="dropdown-item" href="#!">Action</a>
-                                  <a class="dropdown-item" href="#!">Another action</a>
-                                </div>
-                              </div>
-                           </li>
+      </div>
+    </div>
 
-                           <li id="drops">
-                            <div class="dropdown">
-                                <button class="btn-1"
-                                        type="button" id="dropdownMenu1" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                  Horsepower
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                  <a class="dropdown-item" href="#!">Action</a>
-                                  <a class="dropdown-item" href="#!">Another action</a>
-                                </div>
-                              </div>
-                           </li>
-                           <li id="drops">
-                            <div class="dropdown">
-                                <button class="btn-1"
-                                        type="button" id="dropdownMenu1" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                  Model
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                  <a class="dropdown-item" href="#!">Action</a>
-                                  <a class="dropdown-item" href="#!">Another action</a>
-                                </div>
-                              </div>
-                           </li>
-                       </u>
-                   </nav>           
-                    
-                      -->
-                      <div class="filter">
-                        <div id="price">
-                          <p id="tag">Price</p>
-                          <select class="toolbar-sort-select">
-                            <option value="timestamp|-1">Price</option>
-                            <option value="price|-1">Bid: Low to High</option>
-                            <option value="price|1">Bid: High to Low</option>
-                            <option value="timestamp|1">Ending Latest</option>
-                            <option value="location-set">Closest to postal code...</option></select>
-                        </div>
-                        <div id="price">
-                          <p id="tag">Horsepower</p>
-                          <select class="toolbar-sort-select">
-                            <option value="timestamp|-1">Price</option>
-                            <option value="price|-1">Bid: Low to High</option>
-                            <option value="price|1">Bid: High to Low</option>
-                            <option value="timestamp|1">Ending Latest</option>
-                            <option value="location-set">Closest to postal code...</option></select>
-                        </div>
-                        <div id="price">
-                          <p id="tag">Model</p>
-                          <select class="toolbar-sort-select">
-                            <option value="timestamp|-1">Price</option>
-                            <option value="price|-1">Bid: Low to High</option>
-                            <option value="price|1">Bid: High to Low</option>
-                            <option value="timestamp|1">Ending Latest</option>
-                            <option value="location-set">Closest to postal code...</option></select>
-                        </div>
-                        
-                          
+    <!-- Gallery/Listview icons  -->
+    <div class="row ">
+      <div class="col-lg-12 col-md-12 col-sm-12 view-switch">
+         <a href="#" role="button" ><img class="gridview active-view" src="images/grid.png"></a>
+        <a href="#" role="button" ><img class="listview" src="images/list.png"></a>
+      </div>
+    </div>
 
-                      </div>
-                  
-                  
+    <!-- cars -->
+    <section class-"view-active" id="gridShow">
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card" style="width: 18rem;">
+            <div class="embed-responsive embed-responsive-4by3">
+              <a href="#"><img class="card-img-top embed-responsive-item" src="images/car3.jpg" alt="Card image cap"></a>
             </div>
-           
-            <div class="container sample-cars">
-                <div class="header-text">
-
-                    <p id="cars-title">Search Results</p> 
-                 <img id="icon-search"  src="./images/icons8-save-search-24.png" alt="search results icon">
-                 <img id="icon-search" src="./images/icons8-rectangle-24.png" alt="search ">
-                </div>
-                 <div class="recently">
- 
-                     
-                             
-                  
-                  
-                  <div class="card-group list-cars col-lg-3 col-md-12">
-                              
-                     
-                      <div class="card">
-                          <div class="card-body">
-                              <img id="car"  src="./images/front.jpeg" alt="car">
-                           
-                             
-                              <p id="card-text model">Vehicle model</p>
-                              <p id="card-text loc">Location</p>
-                              <p id=" card-text price">$0000.0000</p>
-
-                      
-                          </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-body">
-                              <img id="car"  src="./images/front.jpeg" alt="car">
-                           
-                             
-                              <p id="card-text model">Vehicle model</p>
-                              <p id="card-text loc">Location</p>
-                              <p id=" card-text price">$0000.0000</p>
-
-                      
-                          </div>
-                        </div>
-                        
-                        <div class="card">
-                          <div class="card-body">
-                              <img id="car"  src="./images/front.jpeg" alt="car">
-                           
-                             
-                              <p id="card-text model">Vehicle model</p>
-                              <p id="card-text loc">Location</p>
-                              <p id=" card-text price">$0000.0000</p>
-
-                      
-                          </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-body">
-                              <img id="car"  src="./images/front.jpeg" alt="car">
-                           
-                             
-                              <p id="card-text model">Vehicle model</p>
-                              <p id="card-text loc">Location</p>
-                              <p id=" card-text price">$0000.0000</p>
-
-                      
-                          </div>
-                        </div>
-                    </div> 
-                 </div>                 
-                 <div class="recently">
- 
-                     
-                             
-                  
-                  
-                  <div class="card-group list-cars col-lg-3 col-md-12">
-                              
-                     
-                      <div class="card">
-                          <div class="card-body">
-                              <img id="car"  src="./images/front.jpeg" alt="car">
-                           
-                             
-                              <p id="card-text model">Vehicle model</p>
-                              <p id="card-text loc">Location</p>
-                              <p id=" card-text price">$0000.0000</p>
-
-                      
-                          </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-body">
-                              <img id="car"  src="./images/front.jpeg" alt="car">
-                           
-                             
-                              <p id="card-text model">Vehicle model</p>
-                              <p id="card-text loc">Location</p>
-                              <p id=" card-text price">$0000.0000</p>
-
-                      
-                          </div>
-                        </div>
-                        
-                        <div class="card">
-                          <div class="card-body">
-                              <img id="car"  src="./images/front.jpeg" alt="car">
-                           
-                             
-                              <p id="card-text model">Vehicle model</p>
-                              <p id="card-text loc">Location</p>
-                              <p id=" card-text price">$0000.0000</p>
-
-                      
-                          </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-body">
-                              <img id="car"  src="./images/front.jpeg" alt="car">
-                           
-                             
-                              <p id="card-text model">Vehicle model</p>
-                              <p id="card-text loc">Location</p>
-                              <p id=" card-text price">$0000.0000</p>
-
-                      
-                          </div>
-                        </div>
-                    </div> 
-                 </div>  
-                 <div class="recently">
- 
-                     
-                             
-                  
-                  
-                  <div class="card-group list-cars col-lg-3 col-md-12">
-                              
-                     
-                      <div class="card">
-                          <div class="card-body">
-                              <img id="car"  src="./images/front.jpeg" alt="car">
-                           
-                             
-                              <p id="card-text model">Vehicle model</p>
-                              <p id="card-text loc">Location</p>
-                              <p id=" card-text price">$0000.0000</p>
-
-                      
-                          </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-body">
-                              <img id="car"  src="./images/front.jpeg" alt="car">
-                           
-                             
-                              <p id="card-text model">Vehicle model</p>
-                              <p id="card-text loc">Location</p>
-                              <p id=" card-text price">$0000.0000</p>
-
-                      
-                          </div>
-                        </div>
-                        
-                        <div class="card">
-                          <div class="card-body">
-                              <img id="car"  src="./images/front.jpeg" alt="car">
-                           
-                             
-                              <p id="card-text model">Vehicle model</p>
-                              <p id="card-text loc">Location</p>
-                              <p id=" card-text price">$0000.0000</p>
-
-                      
-                          </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-body">
-                              <img id="car"  src="./images/front.jpeg" alt="car">
-                           
-                             
-                              <p id="card-text model">Vehicle model</p>
-                              <p id="card-text loc">Location</p>
-                              <p id=" card-text price">$0000.0000</p>
-
-                      
-                          </div>
-                        </div>
-                    </div> 
-                 </div>  
-                          
-                         
-                      
-                    
-                
-              
-                    
-                  
-                        
-                      
-                  
-                 
-                 <nav aria-label="Page navigation example" class="pages">
-                    <ul class="pagination">
-                      <li class="page-item">
-                        <a class="page-link" href="#!" aria-label="Previous">
-                          <span aria-hidden="true">«</span>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                      </li>
-                      <li class="page-item active"><a class="page-link" href="#!">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                      <li class="page-item">
-                        <a class="page-link" href="#!" aria-label="Next">
-                          <span aria-hidden="true">»</span>
-                          <span class="sr-only">Next</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-
-                 
-                  
-                 
-
-                
-                 </div>
-               
-            </div>
+            <div class="card-body card-bg">
             
-             
-
+              <p class="card-text"> <span >Vehicle Model</span><br>
+              <span>Location</span><br>
+              <span class="price">$0.000000</span></p>
+            
+            </div>
+          </div>
         </div>
+
+         <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card" style="width: 18rem;">
+            <div class="embed-responsive embed-responsive-4by3">
+              <a href="#"><img class="card-img-top embed-responsive-item" src="images/car3.jpg" alt="Card image cap"></a>
+            </div>
+            <div class="card-body card-bg">
             
+              <p class="card-text"> <span >Vehicle Model</span><br>
+              <span>Location</span><br>
+              <span class="price">$0.000000</span></p>
+            
+            </div>
+          </div>
+        </div>
+         <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card" style="width: 18rem;">
+            <div class="embed-responsive embed-responsive-4by3">
+              <a href="#"><img class="card-img-top embed-responsive-item" src="images/car4.jpg" alt="Card image cap"></a>
+            </div>
+            <div class="card-body card-bg">
+            
+              <p class="card-text"> <span >Vehicle Model</span><br>
+              <span>Location</span><br>
+              <span class="price">$0.000000</span></p>
+            
+            </div>
+          </div>
+        </div>
+         <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card" style="width: 18rem;">
+            <div class="embed-responsive embed-responsive-4by3">
+              <a href="#"><img class="card-img-top embed-responsive-item" src="images/car5.jpg" alt="Card image cap"></a>
+            </div>
+            <div class="card-body card-bg">
+            
+              <p class="card-text"> <span >Vehicle Model</span><br>
+              <span>Location</span><br>
+              <span class="price">$0.000000</span></p>
+            
+            </div>
+          </div>
+        </div>
+         <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card" style="width: 18rem;">
+            <div class="embed-responsive embed-responsive-4by3">
+              <a href="#"><img class="card-img-top embed-responsive-item" src="images/car2.jpg" alt="Card image cap"></a>
+            </div>
+            <div class="card-body card-bg">
+            
+              <p class="card-text"> <span >Vehicle Model</span><br>
+              <span>Location</span><br>
+              <span class="price">$0.000000</span></p>
+            
+            </div>
+          </div>
+        </div>
+         <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card" style="width: 18rem;">
+            <div class="embed-responsive embed-responsive-4by3">
+              <a href="#"><img class="card-img-top embed-responsive-item" src="images/car1.jpg" alt="Card image cap"></a>
+            </div>
+            <div class="card-body card-bg">
+            
+              <p class="card-text"> <span >Vehicle Model</span><br>
+              <span>Location</span><br>
+              <span class="price">$0.000000</span></p>
+            
+            </div>
+          </div>
+        </div>
+         <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card" style="width: 18rem;">
+            <div class="embed-responsive embed-responsive-4by3">
+              <a href="#"><img class="card-img-top embed-responsive-item" src="images/car4.jpg" alt="Card image cap"></a>
+            </div>
+            <div class="card-body card-bg">
+            
+              <p class="card-text"> <span >Vehicle Model</span><br>
+              <span>Location</span><br>
+              <span class="price">$0.000000</span></p>
+            
+            </div>
+          </div>
+        </div>
+         <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="card" style="width: 18rem;">
+            <div class="embed-responsive embed-responsive-4by3">
+              <a href="#"><img class="card-img-top embed-responsive-item" src="images/car6.jpg" alt="Card image cap"></a>
+            </div>
+            <div class="card-body card-bg">
+            
+              <p class="card-text"> <span >Vehicle Model</span><br>
+              <span>Location</span><br>
+              <span class="price">$0.000000</span></p>
+            
+            </div>
+          </div>
+        </div>
+    </div>
+    </section>
+    <!-- list section -->
+    <section id="listShow">
+    <!-- row 1 -->
+     <div class="row-bg">
+      <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-6">
+          <div class="embed-responsive embed-responsive-4by3">
+              <a href="#"><img class="card-img-top embed-responsive-item" src="images/car6.jpg" alt="Car image"></a>
+            </div>
+        </div>
+
+        <div class="col-lg-1 col-md-2 col-sm-2">
+          <p class="views"><img src="images/eye.png" alt="viewed cap"></p>
+          <p class="views"><strong>233</strong></p>
+           <p class="price">$2337887</p>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2">
+          <p class="list-label">Model</p>
+          <p class="list-text">Tesla S</p>
+          <p class="list-label">Make</p>
+          <p class="list-text">2020</p>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2">
+          <p class="list-label">Engine</p>
+          <p class="list-text">Tesla S</p>
+          <p class="list-label">Mileage</p>
+          <p class="list-text">2020</p>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2">
+          <p class="list-label">Fuel Type</p>
+          <p class="list-text">Tesla S</p>
+          <p class="list-label">Drivetrain</p>
+          <p class="list-text">Vegas</p>
+        </div>
+         <div class="col-lg-2 col-md-2 col-sm-2">
+          <p class="list-label">Transmission</p>
+          <p class="list-text">Gasoline</p>
+          <p class="list-label">Year</p>
+          <p class="list-text">2016</p>
+        </div>
+        <div class="col-lg-1 col-md-2 watchlistIcon">
+          <a href="#" role="button"><img src="images/heart.png" alt="watchlist"></a>
         </div>
         
-       
-    </div>
-  
-    
+      </div>
+      </div>
+      <!-- row 2 -->
+     <div class="row-bg">
+      <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-6">
+          <div class="embed-responsive embed-responsive-4by3">
+              <a href="#"><img class="card-img-top embed-responsive-item" src="images/car6.jpg" alt="Car image"></a>
+            </div>
+        </div>
 
+        <div class="col-lg-1 col-md-2 col-sm-2">
+          <p class="views"><img src="images/eye.png" alt="viewed cap"></p>
+          <p class="views"><strong>233</strong></p>
+           <p class="price">$2337887</p>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2">
+          <p class="list-label">Model</p>
+          <p class="list-text">Tesla S</p>
+          <p class="list-label">Make</p>
+          <p class="list-text">2020</p>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2">
+          <p class="list-label">Engine</p>
+          <p class="list-text">Tesla S</p>
+          <p class="list-label">Mileage</p>
+          <p class="list-text">2020</p>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2">
+          <p class="list-label">Fuel Type</p>
+          <p class="list-text">Tesla S</p>
+          <p class="list-label">Drivetrain</p>
+          <p class="list-text">Vegas</p>
+        </div>
+         <div class="col-lg-2 col-md-2 col-sm-2">
+          <p class="list-label">Transmission</p>
+          <p class="list-text">Gasoline</p>
+          <p class="list-label">Year</p>
+          <p class="list-text">2016</p>
+        </div>
+        <div class="col-lg-1 col-md-2 watchlistIcon">
+          <a href="#" role="button"><img src="images/heart.png" alt="watchlist"></a>
+        </div>
+        
+      </div>
+      </div>
+      <!-- row 1 -->
+     <div class="row-bg">
+      <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-6">
+          <div class="embed-responsive embed-responsive-4by3">
+              <a href="#"><img class="card-img-top embed-responsive-item" src="images/car6.jpg" alt="Car image"></a>
+            </div>
+        </div>
+
+        <div class="col-lg-1 col-md-2 col-sm-2">
+          <p class="views"><img src="images/eye.png" alt="viewed cap"></p>
+          <p class="views"><strong>233</strong></p>
+           <p class="price">$2337887</p>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2">
+          <p class="list-label">Model</p>
+          <p class="list-text">Tesla S</p>
+          <p class="list-label">Make</p>
+          <p class="list-text">2020</p>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2">
+          <p class="list-label">Engine</p>
+          <p class="list-text">Tesla S</p>
+          <p class="list-label">Mileage</p>
+          <p class="list-text">2020</p>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2">
+          <p class="list-label">Fuel Type</p>
+          <p class="list-text">Tesla S</p>
+          <p class="list-label">Drivetrain</p>
+          <p class="list-text">Vegas</p>
+        </div>
+         <div class="col-lg-2 col-md-2 col-sm-2">
+          <p class="list-label">Transmission</p>
+          <p class="list-text">Gasoline</p>
+          <p class="list-label">Year</p>
+          <p class="list-text">2016</p>
+        </div>
+        <div class="col-lg-1 col-md-2 watchlistIcon">
+          <a href="#" role="button"><img src="images/heart.png" alt="watchlist"></a>
+        </div>
+        
+      </div>
+      </div>
+    </section>
+  </div>
+
+
+   <!-- Login Modal -->
+  <div class="modal fade" id="myLoginModal" role="dialog">
+    <div class="modal-dialog .modal-dialog-centered">
     
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+          <h3 class="modal-title">Rebuilt Exotics</h3>
+        </div>
+        <div class="container-fluid modal-body">
+          <h3 class="login-label">Log In</h3>
+          <p class="modal-text" style="margin-left:10px;">New to Rebuilt Exotics? <a class="login-link" href="#">Sign Up here</a></p>
+          <div class="row">
+            <div class="col-md-8 col-sm-6">
+              <form id="login-form" action="#" method="POST">
+                <div class="form-row form-pad">
+                    <label for="" class="modal-text big">
+                        Email
+                    </label>
+                     <input type="email" class="form-control" name="email" >
+              </div>
+              <div class="form-row form-pad">
+                  <label for="" class="modal-text big">
+                      Password
+                  </label>
+                  <input type="password" class="form-control" name="password" >
+              </div>
+              <p class="modal-text">Forgot your password? <a class="login-link" href="#">click here</a></p>
+                <input type="button" class="login btn btn-login" name="login" value="LOG IN" >
+                <button type="button" class="btn btn-login" data-dismiss="modal">CANCEL</button>             
+          </form>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+
+    <!-- Scripts -->
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.js"></script>
 </body>
+
 </html>
