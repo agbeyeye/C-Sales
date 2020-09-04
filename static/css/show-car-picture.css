@@ -1,0 +1,26 @@
+
+ .card 
+ {
+     margin-top: 5px;
+     margin-bottom: 5px;
+ }
+ .navbar 
+ {
+     color:white;
+ }
+ .navbar a 
+ {
+     text-decoration: none;
+     color: white;
+ }
+
+.pull-left
+{
+    font-size: 20px;
+    font-weight: bold;
+    color:white;
+}
+
+.modal-content{
+     background-color: #262626;
+}

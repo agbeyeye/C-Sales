@@ -1,0 +1,27 @@
+#registration-form{
+	padding-left: 55px;
+	padding-top: 25px;
+
+}
+
+.form-pad{
+	/*padding-top: 5px;*/
+	padding-bottom: 1px;
+}
+
+#register-btn{
+	background-color: #b70b1f;
+	color: white;
+	float: right;
+	margin-bottom: 5px;
+}
+
+.form-field{
+    width:30%;
+}
+
+.container-background{
+width:100%;
+height:100%; 
+/*background-color:#EFEFEF;*/
+}

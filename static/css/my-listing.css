@@ -1,0 +1,155 @@
+.main{
+    background-color: #EFEFEF;
+    height: 100%;
+}
+
+.view-switch{
+    background-color: white;
+    padding-top: 10px;
+    margin-bottom:20px;
+    margin-left: 0px;
+    padding-left: 0px;
+
+}
+h2{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #707070;
+}
+.active-view{
+    background-color: grey;
+}
+
+/*cars styles*/
+.card-img-top img{
+    width: 10%;
+    height: 10%;
+    object-fit:fill;
+    /*display: block;*/
+}
+
+.card-img-top{
+    padding: 5px;
+}
+
+.card-text{
+    font-size: 13px;
+}
+
+.car-title{font-size: 15px;}
+
+.price{
+     font-weight: bold;
+     padding-right: 3px;
+     float: right;
+}
+
+.enlisted-days{
+    padding-left: 3px;
+}
+
+.card{
+    margin: 2px;
+    background-color: white;
+    margin-bottom: 20px;
+
+}
+
+.bottom-left {
+  position: absolute;
+  bottom: 10px;
+  left: 16px;
+  width: 150px;
+  border-radius: 5px;
+  /*text-align: center;*/
+  background-color: #40403B;
+  color: white;
+  font-size: 13px;
+}
+.card-bg{
+    padding-left: 5px;
+    margin-top: 7px;
+}
+
+.views{
+    text-align: center;
+}
+
+.list-label{
+    font-weight: bold;
+    text-align: center;
+}
+
+.list-text{
+    text-align: center;
+}
+
+.embed-responsive .card-img-top {
+    object-fit: cover;
+}
+
+#listShow{
+    display: none;
+}
+
+.row-bg{
+    padding: 5px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+.watchlistIcon{
+    float: right;
+}
+
+.card-body a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.favorite{
+    float: right;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    font-size: 15px;
+    display: none;
+}
+
+.favorite:hover{
+    color: black;
+}
+
+.card:hover .favorite{
+    display: block;
+}
+
+.value-row{
+    margin-top: 20px;
+}
+
+.header-row{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1000px) {
+   .list-view-side-container{
+        display: none;
+   }
+}
+
+.no-listing{
+  height: 50vh;
+}
+
+.no-listing h2{
+  margin-top: 50px;
+  text-align: center;
+}
+
+.no-listing p{
+  text-align: center;
+  font-size: 16px;
+}

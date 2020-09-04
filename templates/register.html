@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+<!--page style sheet-->
+{%block styles%}
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'css/register.css'%}"/>
+  <link rel="stylesheet" href="{% static 'css/jquery-spinner.min.css'%}"/>
+{%endblock%}
+
+<!-- page script-->
+{%block scripts%}
+    <script src="{% static 'js/register.js' %}"></script>
+    <script src="{%static 'js/jquery-spinner.min.js'%}"></script>
+{%endblock%}
+
+<!--page content-->
+{%block content%}
+  {%load static %}
+
+  {% load crispy_forms_tags %}
+<div id="page">
+  <div class="row">
+        <div class="col-md-8 col-sm-8">
+
+            <form id="registration-form"  method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+                <h2>Register</h2>
+                <p class="regis-text">Already has an account with us? <a class="login-link" data-toggle="modal" href="#myLoginModal">Log In here</a></p>
+              {% for field in form %}
+                <div class="form-row form-pad">
+                   <span class="form-field">{{field| as_crispy_field}}</span>
+
+                </div>
+            {%endfor%}
+             <p><span class="form-field">{{imgForm}}</span></p>
+
+            <button type="submit" class="register btn btn-register" id="register-btn" name="register" >REGISTER</button>
+
+          </form>
+        </div>
+      </div>
+</div>
+
+<script type="text/javascript">
+  
+  $('#register-btn').click(function(){
+      var spinner =new jQuerySpinner({
+              parentId:'page',
+              duration: 5000
+          });
+      spinner.show();
+      spinner.hide();
+  });
+</script>
+
+{% endblock%}
+
+
+
+
+
+
+
+
+
+
+
+<!--<h1>Register</h1>-->
+<!--<form method="POST">-->
+<!--  {% csrf_token%}-->
+<!--  {{form.as_p}}-->
+<!--  <button type="submit">Register</button>-->
+<!--</form>-->

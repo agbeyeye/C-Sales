@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {%block title%}<title>Rebuilt Exotics</title>{%endblock%}
+   {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/jquery-spinner.min.css'%}" />
+  <!-- Load an icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ 
+  <link rel="stylesheet" href="{% static 'css/template.css' %}">
+  <script src="{% static 'js/template.js'%}"></script>
+
+    {%block styles%}
+        <!--        page based custom css here-->
+    {%endblock%}
+
+</head>
+
+<body>
+  <div class="container">
+    <div class=" side-bar col-lg-2 col-md-3 col-sm-4">
+      <div class="row">
+        <p class="title">Rebuilt Exotics</p>
+        <hr>
+      </div>
+
+      <div class="row">
+         <nav class="navbar flex-row navbar">
+                    <a class="nav-link menu-active" href="{% url 'home'%}"><i class="fa fa-home"></i>&nbsp Home</a>
+                    
+                      <a class="nav-link" href="{% url 'submit-vehicle'%}"><i class="fa fa-plus-square-o" aria-hidden="true"></i>&nbsp Submit Vehicle</a>
+                    
+                    <a class="nav-link" id="special" href="{% url 'about'%}"><i class="fa fa-adjust" aria-hidden="true"></i>&nbsp About</a>
+                    <a class="nav-link" href="{%url 'contact-us'%} "><i class="fa fa-user"></i>&nbsp Contact</a>
+                    <a class="nav-link" href="{%url 'sold-vehicles'%}"><i class="fa fa-car" aria-hidden="true"></i>&nbspSold Vechiles</a>
+                    <hr class="hr-color">
+                  </nav>
+
+                  {% block userProfile%}
+
+                  {%endblock%}
+                  <nav class="navbar flex-row profile">
+                    {%if user.is_authenticated%}
+                      
+                         <a class="nav-link" href="#!"><i class="fa fa-fw fa-envelope"></i>&nbsp Messages</a>
+                          <a class="nav-link" href="#!"><i class="fa fa-star-half-o" aria-hidden="true"></i>&nbsp Watchlist</a>
+                          <a class="nav-link" href="{%url 'my-listing'%}"><i class="fa fa-list" aria-hidden="true"></i>&nbsp My Listings</a>
+                          <a class="nav-link" href="#!"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp Settings</a>
+                          <hr class="hr-color">
+                          <a class="nav-link" href="{% url 'logout'%}"><span class="sign-color"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp Sign Out</span></a>
+                      {%else%}
+                     
+                        <a class="nav-link" data-toggle="modal" href="#myLoginModal"><span class="sign-color"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp Sign In</span></a>
+
+                        <a class="nav-link" href="{%url 'register' %}"><i class="fa fa-user-plus" aria-hidden="true"></i>&nbsp Register</a>
+                     {%endif%}
+
+                    
+
+                  </nav>
+      </div>
+    </div>
+
+
+    <!-- Main content.. Put your content here!!-->
+    <div class=" main col-lg-10 col-md-9 col-sm-8" >
+            {%block content%}{%endblock%}
+        </div>
+
+
+  </div>
+
+   <!-- Login Modal -->
+  <div class="modal fade" id="myLoginModal" role="dialog">
+    <div class="modal-dialog .modal-dialog-centered">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+          <h3 class="modal-title">Rebuilt Exotics</h3>
+        </div>
+        <div class="container-fluid modal-body">
+          <h3 class="login-label">Log In</h3>
+          <p class="modal-text" style="margin-left:10px;">New to Rebuilt Exotics? <a class="login-link" href="#">Sign Up here</a></p>
+          <div class="row">
+            <div class="col-md-8 col-sm-6">
+               <p id="loginerror" class="text-danger" style="display:none">Invalid username or password. Please try again</p>
+              <form id="login-form" action="" method="POST">
+                   {%csrf_token%}
+                <div class="form-row form-pad">
+                    <label for="" class="modal-text big">
+                        Username
+                    </label>
+                     <input type="text" class="form-control" name="username" id="username" >
+              </div>
+              <div class="form-row form-pad">
+                  <label for="" class="modal-text big">
+                      Password
+                  </label>
+                  <input type="password" class="form-control" name="password" id="password">
+              </div>
+              <p class="modal-text">Forgot your password? <a class="login-link" href="{% url 'forgetpassword'%}">click here</a></p>
+                <input type="button" class="login btn btn-login" name="login" id="login" value="LOG IN" >
+                <button type="button" class="btn btn-login" data-dismiss="modal">CANCEL</button>
+          </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+    <!-- Scripts -->
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/additional-methods.js"></script>
+    
+
+      <script src="{%static 'js/jquery-spinner.min.js'%}"></script>
+
+    {%block scripts%}
+        <!--   insert page based script here-->
+    {%endblock%}
+
+    <!-- Login before submitting a vehicle -->
+    <script type="text/javascript">
+      $("#login").click(function(){
+          var form = $("#login-form");
+          if(form.valid()==true){
+            var username = $.trim($('#username').val());
+            var pwd = $.trim($('#password').val());
+            $.ajax({
+              type: "POST",
+              url: "login/",
+              data: {username:username,password:pwd},
+              success: function(response){
+                  //if request if made successfully then the response represent the data
+                  console.log(response);
+                  if(response.success){console.log('successfuly login');
+                    $('#myLoginModal').modal('hide');
+                    window.location.href = "{%url 'home'%}";
+                }else{
+                  console.log('login failed');
+                  $('#loginerror').css('display', 'block');
+                }
+              }
+            });
+            var spinner =new jQuerySpinner({
+                  parentId:'myLoginModal',
+                  duration: 5000
+              });
+            spinner.show();
+            spinner.hide();
+        }});
+    </script>
+</body>
+
+</html>

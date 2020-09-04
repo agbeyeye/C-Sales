@@ -1,0 +1,9 @@
+{% autoescape off %}  
+Hi {{ user.username }}, 
+{{commentSender}}  wrote the following comment on your car
+"{{content}}"
+Please click on the link to approve the comment ,http://{{ domain }}{% url 'approve' uidb64=uid token=token vehicle_id=vehicle_id comment_id=comment_id %}  
+OR simply ignore the email if you choose not a approve it.
+If you think, it's not you, then just ignore this email.
+ 
+{% endautoescape %}

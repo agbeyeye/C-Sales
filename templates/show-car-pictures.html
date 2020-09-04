@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Rebuilt Exotics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/show-car-picture.css'%}">
+  <style>
+    @media screen and (min-width: 768px) {
+        .modal-dialog {
+          width: 900px; /* New width for default modal */
+           height: 900px;
+        }
+        .modal-sm {
+          width: 350px; /* New width for small modal */
+          height: 300px;
+        }
+    }
+    @media screen and (min-width: 992px) {
+        .modal-lg {
+          width: 950px; /* New width for large modal */
+        }
+    }
+</style>
+</head>
+<body  style="background-color: #262626;">
+
+<div class="container">
+  <nav class="navbar">
+    <a class="navbar-brand" href="#!">All Photos({{image_count}})</a>
+    <a class="navbar-brand" href="#!" role="button" onclick="goBack()" style="float:right;font-size:30px">x</a>
+  </nav>
+   
+  <div class="row">
+  {%for img in vehicle_images%}
+    <div class="col-lg-3 col-md-4 col-sm-12"data-toggle="modal" data-target="#myModal" >
+      <div class="card">
+        <div class="embed-responsive embed-responsive-16by9">
+        <a href="#myCarousel" data-slide-to="0">
+          <img class="card-img-top embed-responsive-item" src="{{img.image.url}}"  data-color="black" alt="Card image cap"> 
+        </a>
+       </div>
+      </div>
+    </div>
+  {%endfor%}
+  </div>  
+
+     
+<!--begin modal window-->
+<div class="modal fade" id="myModal">
+
+  <div class="modal-dialog">
+  
+  <div class="modal-content" >
+  
+  <div class="modal-header" >
+  
+  <div class="pull-left">Photos</div>
+  
+  <button type="button" class="close" data-dismiss="modal" title="Close"> <span class="glyphicon glyphicon-remove"></span></button>
+  
+  </div>
+  
+  <div class="clearfix"></div>
+  
+  <div class="modal-body">
+  
+  <!--CAROUSEL CODE GOES HERE-->
+  
+  <div id="myCarousel" class="carousel slide" data-interval="false">
+  
+  <div class="carousel-inner">
+       <div class="item embed-responsive embed-responsive-16by9 active"> <img class="embed-responsive-item" src="{{vehicle_images.0.image.url}}" alt="item0">
+         <!--  <div class="carousel-caption">  
+          <p> 2 out of 50.</p> </div> -->
+      </div>
+
+      {%for img in vehicle_images%}
+        <div class="item embed-responsive embed-responsive-16by9"> <img class="embed-responsive-item" src="{{img.image.url}}" alt="item0">       
+        <!-- <div class="carousel-caption">  
+        <p> 2 out of 50.</p> </div>   -->
+        </div>
+      {%endfor%}
+  
+  
+  <!--end carousel-inner-->
+  </div>
+  
+  <!--Begin Previous and Next buttons-->
+  
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span></a> <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+  </div>
+  <!--end carousel-->
+
+  </div>
+  <!--end modal-body-->
+  
+  <!-- <div class="modal-footer">
+  
+  <div class="pull-left"> <small>Placeholder Images from <a href="https://dummyimage.com" target="new">DummyImage.com</a></small> </div>
+  
+  <button class="btn-sm close" type="button" data-dismiss="modal">Close</button>
+  
+  <div class="clearfix"></div>
+  
+  end modal-footer-/div> -->
+  
+  <!--end modal-content--></div>
+  
+  <!--end modal-dialoge--></div>
+  
+  <!--end myModal--></div>
+  </div>
+    
+</div>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+
+</body>
+</html>

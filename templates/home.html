@@ -1,0 +1,185 @@
+{%extends "base.html" %}
+{%block styles%}
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{%block userProfile%}
+
+    {% if user.is_authenticated%}
+        <div>
+            <img class="rounded" style="border-radius: 50%;width: 50px;height:50px; margin-left: 10px;" id="person" src="{{photo}}" alt="profile ">
+             <p>Hi, {{user.username}}</p>                       
+         </div>
+          <hr >
+    {%endif%}
+{%endblock%}
+
+
+{%block content%}
+    {%load static%}
+    <!-- Intro image -->
+
+			<div class="row">
+				<div class="col page-intro embed-responsive embed-responsive-21by9">
+					<img class="embed-responsive-item" src="{%static 'images/car6.jpg'%}">
+					 <div class="search-row row">
+                        <div class="search-form">
+                            <form action="" class="search-form">
+                                <div class="form-group has-feedback">
+                                <label for="search" class="sr-only">Search</label>
+                                <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                                  <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                              </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-4 intro-msg">
+                    		<p id="welcome-msg" >Introductory Page message</p>
+                    	</div>
+
+                    </div>
+
+				</div>
+			</div>
+
+			<!-- Recently Added Cars -->
+			<div class="row vehicle-set">
+				{%if popular_vehicles%}
+				<div class="col car-description">
+					<p class="group-by">Popular<span class="view-cars"><a href="{%url 'popular-vehicles'%}" >View All</a></span></p>
+
+				</div>
+				
+					{%for vehicle in popular_vehicles%}
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="card" >
+					            <div class="embed-responsive embed-responsive-4by3">
+					              <a href="{%url 'vehicle' vehicle_id=vehicle.id%}"><img class="card-img-top embed-responsive-item" src="media/{{vehicle.indexImage}}" alt="Card image cap"></a>
+					               <div class="bottom-left">
+					                  <div><span class="enlisted-days"><i class="fa fa-clock-o" aria-hidden="true" style="color:#A9B2AC;"></i>{{vehicle.enlisted_days}} Day(s)</span>
+                             			<span  class="price"><i class="fa fa-money" aria-hidden="true" style="color:#A9B2AC;"></i> $ {{vehicle.askingPrice}}</span></div>
+					               </div>
+					            </div>
+					            <div class="card-body card-bg">
+					            	<p class="card-text car-title"> <a href="{%url 'vehicle' vehicle_id=vehicle.id%}" class="" >{{vehicle.Year}} {{vehicle.make}} {{vehicle.model}}</a><br>
+                         			<span>{{vehicle.engine}} {{vehicle.transmission}} </span><br>
+			                        <span>{{vehicle.city}} {{vehicle.zipCode}}</span>
+			                        <span class="favorite"><a href="#"><i class="fa fa-star-o fa-lg" aria-hidden="true"></i></a></span>
+			                        </p>
+
+					            </div>
+		          			</div>
+						</div>	
+					{%endfor%}			
+				{%endif%}
+			</div>
+
+			<!-- Nearby cars -->
+			<div class="row vehicle-set">
+				{%if popular_vehicles%}
+					<div class="col car-description">
+						<p class="group-by">Recently Added<span class="view-cars"><a href="{%url 'recent-vehicles'%}">View All</a></span></p>
+
+					</div>
+				
+					{%for vehicle in recent_vehicles%}
+						<div class="col-lg-4 col-md-6 col-sm-6">
+							<div class="card" >
+					            <div class="embed-responsive embed-responsive-4by3">
+					              <a href="{%url 'vehicle' vehicle_id=vehicle.id%}"><img class="card-img-top embed-responsive-item" src="media/{{vehicle.indexImage}}" alt="Card image cap"></a>
+					               <div class="bottom-left">
+					                  <div><span class="enlisted-days"><i class="fa fa-clock-o" aria-hidden="true" style="color:#A9B2AC;"></i>{{vehicle.enlisted_days}} Day(s)</span>
+                             			<span  class="price"><i class="fa fa-money" aria-hidden="true" style="color:#A9B2AC;"></i> $ {{vehicle.askingPrice}}</span></div>
+					               </div>
+					            </div>
+					            <div class="card-body card-bg">
+					            	<p class="card-text car-title"> <a href="{%url 'vehicle' vehicle_id=vehicle.id%}" class="" >{{vehicle.Year}} {{vehicle.make}} {{vehicle.model}}</a><br>
+                         			<span>{{vehicle.engine}} {{vehicle.transmission}} </span><br>
+			                        <span>{{vehicle.city}} {{vehicle.zipCode}}</span>
+			                        <span class="favorite"><a href="#"><i class="fa fa-star-o fa-lg" aria-hidden="true"></i></a></span>
+			                        </p>
+
+					            </div>
+		          			</div>
+						</div>	
+					{%endfor%}			
+				{%endif%}
+				
+
+			</div>
+			<!-- Popular cars -->
+			<div class="row vehicle-set">
+				<div class="col car-description">
+					<p class="group-by">Near By<span class="view-cars"><a href="#">View All</a></span></p>
+
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-6">
+					<div class="card" >
+			            <div class="embed-responsive embed-responsive-4by3">
+			              <a href="#"><img class="card-img-top embed-responsive-item" src="{% static 'images/car1.jpg'%}" alt="Card image cap"></a>
+			               <div class="bottom-left">
+			                  <div><span class="enlisted-days"><i class="fa fa-clock-o" aria-hidden="true" style="color:#A9B2AC;"></i> 2 Days</span>
+			                   <span  class="price"><i class="fa fa-money" aria-hidden="true" style="color:#A9B2AC;"></i> $10.000</span></div>
+			               </div>
+			            </div>
+			            <div class="card-body card-bg">
+
+			              <p class="card-text car-title"> <a href="#" class="" >2017 Audi A4 2.0T Quattro Sedan</a><br>
+			               <span>6-Speed Manual "E92" </span><br>
+			              <span>Chicago, IL 60625</span>
+			              <span class="favorite"><a href="#"><i class="fa fa-star-o fa-lg" aria-hidden="true"></i></a></span>
+			              </p>
+
+			            </div>
+          			</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-6">
+					<div class="card" >
+			            <div class="embed-responsive embed-responsive-4by3">
+			              <a href="#"><img class="card-img-top embed-responsive-item" src="{% static 'images/car6.jpg'%}" alt="Card image cap"></a>
+			               <div class="bottom-left">
+			                  <div><span class="enlisted-days"><i class="fa fa-clock-o" aria-hidden="true" style="color:#A9B2AC;"></i> 2 Days</span>
+			                   <span  class="price"><i class="fa fa-money" aria-hidden="true" style="color:#A9B2AC;"></i> $10.000</span></div>
+			               </div>
+			            </div>
+			            <div class="card-body card-bg">
+
+			              <p class="card-text car-title"> <a href="#" class="" >2017 Audi A4 2.0T Quattro Sedan</a><br>
+			               <span>6-Speed Manual "E92" </span><br>
+			              <span>Chicago, IL 60625</span>
+			              <span class="favorite"><a href="#"><i class="fa fa-star-o fa-lg" aria-hidden="true"></i></a></span>
+			              </p>
+
+			            </div>
+          			</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-6">
+					<div class="card" >
+			            <div class="embed-responsive embed-responsive-4by3">
+			              <a href="#"><img class="card-img-top embed-responsive-item" src="{% static 'images/car1.jpg'%}" alt="Card image cap"></a>
+			               <div class="bottom-left">
+			                  <div><span class="enlisted-days"><i class="fa fa-clock-o" aria-hidden="true" style="color:#A9B2AC;"></i> 2 Days</span>
+			                   <span  class="price"><i class="fa fa-money" aria-hidden="true" style="color:#A9B2AC;"></i> $10.000</span></div>
+			               </div>
+			            </div>
+			            <div class="card-body card-bg">
+
+			              <p class="card-text car-title"> <a href="#" class="" >2017 Audi A4 2.0T Quattro Sedan</a><br>
+			               <span>6-Speed Manual "E92" </span><br>
+			              <span>Chicago, IL 60625</span>
+			              <span class="favorite"><a href="#"><i class="fa fa-star-o fa-lg" aria-hidden="true"></i></a></span>
+			              </p>
+
+			            </div>
+          			</div>
+				</div>
+				
+			</div>
+
+
+
+		</div>
+
+{% endblock %}

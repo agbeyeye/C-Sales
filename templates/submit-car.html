@@ -1,0 +1,156 @@
+{%extends "base.html" %}
+{%block styles%}
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/submit-car.css' %}">
+     <link rel="stylesheet" href="{% static 'css/jquery-spinner.min.css'%}"/>
+     <script src="{%static 'js/jquery-spinner.min.js'%}"></script>
+
+{% endblock %}
+
+{%block userProfile%}
+
+    {% if user.is_authenticated%}
+        <div>
+            <img class="rounded" style="border-radius: 50%;width: 50px;height:50px; margin-left: 10px;" id="person" src="{{photo}}" alt="profile ">
+             <p>Hi, {{user.username}}</p>                       
+         </div>
+         <hr>
+    {%endif%}
+{%endblock%}
+
+
+{%block content%}
+    {%load static%}
+<!--    Submit car code-->
+    <div style="background-color:#EFEFEF;height:100%;">
+        <div class="row centered header"  style="margin:10px;">
+            <h2 ><span class="header-color">Submit Your Vehicle</span></h2>
+            <p><span style="font-weight:bold;font-size:17px; color:#707070">Rebuilt Exotics</span>, we help you connect with the best buyers across the world at low fees</p>
+      </div>
+      <div class="container">
+      <div class="row centered card-group" >
+        <div class="col-md-8 col-md-offset-1" >
+          <div class="col-sm-6">
+           <div class="card card-1">
+             <h2 class="card-header">Private/Dealer</h2>
+              <div class="card-body">
+               <p class="price-tag">$12</p>
+                <ul>
+                 <li class="description">50 Photos</li>
+                 <li class="description">Integrate videos</li>
+                 <li class="description">Unlimited number of renewals</li>
+               </ul>
+               {%if user.is_authenticated%}
+                <a href="{% url 'car-detail'%}" class="btn btn-submit-vehicle">SUBMIT A VEHICLE</a>
+                {%else%}
+                      <a  class="btn btn-submit-vehicle" data-toggle="modal" href="#myLoginToSubmitCar">SUBMIT A VEHICLE</a>
+                {%endif%}
+              </div>
+            </div>
+        </div>
+        
+        <div class="col-sm-6">
+          <div class="card card-2">
+             <h2 class="card-header">Youtuber</h2>
+              <div class="card-body">
+               <p class="price-tag">Free</p>
+               <ul>
+                 <li class="description">50 Photos</li>
+                 <li class="description">Integrate videos</li>
+                 <li class="description">Unlimited number of renewals</li>
+               </ul>
+
+               {%if user.is_authenticated%}
+                <a href="{% url 'car-detail'%}" class="btn btn-submit-vehicle">SUBMIT A VEHICLE</a>
+                {%else%}
+                      <a  class="btn btn-submit-vehicle" data-toggle="modal" href="#myLoginToSubmitCar">SUBMIT A VEHICLE</a>
+                {%endif%}
+              </div>
+            </div>
+
+        </div>
+         </div>
+      </div>
+      </div>
+    </div>
+
+
+      <!-- Login Modal -->
+  <div class="modal fade" id="myLoginToSubmitCar" role="dialog">
+    <div class="modal-dialog .modal-dialog-centered">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+          <h3 class="modal-title">Rebuilt Exotics</h3>
+        </div>
+        <div class="container-fluid modal-body">
+          <h3 class="login-label">Log In</h3>
+          <p class="modal-text" style="margin-left:10px;">New to Rebuilt Exotics? <a class="login-link" href="#">Sign Up here</a></p>
+          <div class="row">
+            <div class="col-md-8 col-sm-6">
+               <p id="loginerror-1" class="text-danger" style="display:none">Invalid username or password. Please try again</p>
+              <form id="login-form-1" action="" method="POST">
+                   {%csrf_token%}
+                <div class="form-row form-pad">
+                    <label for="" class="modal-text big">
+                        Username
+                    </label>
+                     <input type="text" class="form-control" name="username-1" id="username-1" >
+              </div>
+              <div class="form-row form-pad">
+                  <label for="" class="modal-text big">
+                      Password
+                  </label>
+                  <input type="password" class="form-control" name="password-1" id="password-1">
+              </div>
+              <p class="modal-text">Forgot your password? <a class="login-link" href="{% url 'forgetpassword'%}">click here</a></p>
+                <input type="button" class="login btn btn-login" name="login-1" id="login-1" value="LOG IN" >
+                <button type="button" class="btn btn-login" data-dismiss="modal">CANCEL</button>
+          </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Login before submitting a vehicle -->
+    <script type="text/javascript">
+      $("#login-1").click(function(){
+        console.log('login clicked');
+          var form = $("#login-form-1");
+          if(form.valid()==true){
+            var username = $.trim($('#username-1').val());
+            var pwd = $.trim($('#password-1').val());
+            $.ajax({
+              type: "POST",
+              url: "login/",
+              data: {username:username,password:pwd},
+              success: function(response){
+                  //if request if made successfully then the response represent the data
+                  console.log(response);
+                  if(response.success){console.log('successfuly login');
+                   
+                    $('#myLoginToSubmitCar').modal('hide');
+                    window.location.href = "{%url 'car-detail'%}";
+                }else{
+                  console.log('login failed');
+                  $('#loginerror').css('display', 'block');
+                }
+              }
+            });
+            var spinner =new jQuerySpinner({
+                  parentId:'myLoginToSubmitCar',
+                  duration: 5000
+              });
+            spinner.show();
+            spinner.hide();
+        }});
+    </script>
+<!-- end of page code-->
+{%endblock%}

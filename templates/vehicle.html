@@ -1,0 +1,279 @@
+{%extends "base.html" %}
+{% load crispy_forms_tags %}
+{%block styles%}
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/vehicle.css' %}">
+{% endblock %}
+
+{%block userProfile%}
+
+    {% if user.is_authenticated%}
+        <div>
+            <img class="rounded" style="border-radius: 50%;width: 50px;height:50px; margin-left: 10px;" id="person" src="{{photo}}" alt="profile ">
+             <p>Hi, {{user.username}}</p>                       
+         </div>
+          <hr >
+    {%endif%}
+{%endblock%}
+
+
+
+{%block content%}
+    {%load static%}
+
+    <div style="margin-top:20px;">
+        <div class="row">
+            <h3>{{vehicle.Year}} {{vehicle.make}} {{vehicle.model}} <span class="favorite"><a href="#"><i class="fa fa-star-o fa-lg" aria-hidden="true"></i></a></span></h3>
+        </div>
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 embed-responsive embed-responsive-16by9 lg-index-img" >
+                <a href="#"><img  class="embed-responsive-item" src="{{vehicle.indexImage.url}}"></a>
+            </div>
+            <div class="col-lg-9 col-md-12 col-sm-12 embed-responsive embed-responsive-16by9 sm-index-img" >
+                <a href="#"><img  class="embed-responsive-item" src="{{vehicle.indexImage.url}}">
+                <div class="all-photo-label">
+                     <a href="{%url 'vehicle-images' vehicle_id=vehicle.id%}" style="text-decoration:none;color:white">All Photos</a>
+                </div></a>
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12">
+                <div class="row big-screen-show">
+                    <div class="col-lg-12 col-md-4 col-sm-12 embed-responsive embed-responsive-4by3" >
+                        <img style="margin:0px 5px;" class="embed-responsive-item " src="{{vehicle_images.0.image.url}}">
+                    </div>
+                <!-- </div -->
+
+                 <!-- <div class="row"> -->
+                    <div class="col-lg-12 col-md-4 col-sm-12 embed-responsive embed-responsive-4by3" >
+                        <img style="margin:5px;" class="embed-responsive-item " src="{{vehicle_images.1.image.url}}">
+                    </div>
+                <!-- </div> -->
+
+                 <!-- <div class="row"> -->
+                    <div class="col-lg-12 col-md-4 col-sm-12 embed-responsive embed-responsive-4by3" >
+                        <a href="{%url 'vehicle-images' vehicle_id=vehicle.id%}"><img style="margin:5px;" class="embed-responsive-item " src="{{vehicle_images.2.image.url}}"></a>
+                         <div class="all-photo-label">
+                            <a href="{%url 'vehicle-images' vehicle_id=vehicle.id%}" style="text-decoration:none;color:white">All Photos</a>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!-- Vehicle info table -->
+    <div class="row ">
+        <div class="table-responsive-md col-lg-12 col-md-12 col-sm-12 trim-pad" >
+          <table class="table table-bordered">
+
+            <tbody>
+                <tr>
+                    <td class="row-label">Seller</td>
+                    <td>{{vehicle.name}}</td>
+                    <td class="row-label">Location</td>
+                    <td>{{vehicle.city}}</td>
+
+                </tr>
+                <tr>
+                    <td class="row-label">VIN</td>
+                    <td>{{vehicle.vin}}</td>
+                    <td class="row-label">Drivetrain</td>
+                    <td>{{vehicle.drivetrain}}</td>
+                </tr>
+                 <tr>
+                    <td class="row-label">Engine Size</td>
+                    <td>{{vehicle.engine}}</td>
+                    <td class="row-label">Transmission</td>
+                    <td>{{vehicle.transmission}}</td>
+                </tr>
+                <tr>
+                    <td class="row-label">Trim/Package</td>
+                    <td>{{vehicle.trim}}</td>
+                    <td class="row-label">Wheel Alignment</td>
+                    <td>{{vehicle.wheelAlignment}}</td>
+                </tr>
+                 <tr>
+                    <td class="row-label">Mileage</td>
+                    <td>{{vehicle.milleage}}</td>
+                    <td class="row-label">Fuel Type</td>
+                    <td>{{vehicle.fuelType}}</td>
+                </tr>
+                 <tr>
+                    <td class="row-label">Exterior Color</td>
+                    <td>{{vehicle.exteriorColor}}</td>
+                    <td class="row-label">Title</td>
+                    <td>{{vehicle.title}}</td>
+                </tr>
+                 <tr>
+                    <td class="row-label">Interior Color</td>
+                    <td>{{vehicle.interiorColor}}</td>
+                    <td class="row-label">Seller Type</td>
+                    <td>{{vehicle.sellerType}}</td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <!-- More info about vehicle -->
+    {%if vehicle.upgrade%}
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 trim-pad">
+            <h3>Modifications</h3>
+            <ul>
+            {%for item in upgrade%}
+                <li class="look">{{item}}</li>
+            {%endfor%}
+               
+            </ul>
+            <hr>
+        </div>
+    </div>
+    {%endif%}
+    {%if vehicle.recentService%}
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 trim-pad">
+            <h3>Recent Maintenance/Service</h3>
+            <ul>
+            {%for item in service%}
+                <li class="look">{{item}}</li>
+            {%endfor%}
+               
+            </ul>
+            <hr>
+        </div>
+    </div>
+    {%endif%}
+    {%if vehicle.repair%}
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 trim-pad">
+            <h3>Repairs</h3>
+            <ul>
+            {%for item in repair%}
+                <li class="look">{{item}}</li>
+            {%endfor%}
+               
+            </ul>
+            <hr>
+        </div>
+    </div>
+    {%endif%}
+    {%if vehicle.flaws%}
+     <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 trim-pad" >
+            <h3>Known Flaws</h3>
+            <ul>
+            {%for item in flaws%}
+                <li class="look">{{item}}</li>
+            {%endfor%}
+            </ul>
+            <hr>
+        </div>
+    </div>
+    {%endif%}
+     <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 trim-pad" >
+            
+            <h3>Seller Notes</h3>
+            <div>
+                <div class="col-lg-1 col-md-1 col-sm-1 profile-photo">
+                    <img class="rounded" id="person" src="{{profile_photo}}" alt="profile ">
+                </div>
+                <div class="col-lg-11 col-md-11 col-sm-11">
+                    {%if vehicle.extraInfo%}
+                    <p>{{vehicle.extraInfo}}</p>
+                    {%endif%}
+                    {%if not vehicle.hideContact%}
+                        <div class="col-lg-2 col-md-3 col-sm-4 trim-pad">
+                            <p class="contact">+123-433-3233</p>
+                        </div>
+                    {%endif%}
+
+                     <div class="col-lg-2 col-md-3 col-sm-4">
+                        <span><a href="#" role="button" class="accessories-item"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></span>
+                    </div>
+                      
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+
+     <div class="row" style="margin-bottom:20px;">   
+     {%if vehicle.videoLinks%}
+     <hr>  
+        <div class="col-lg-12 col-md-12 col-sm-12 trim-pad" >
+            <h3>Videos</h3>
+            {%for link in video_links%}
+            <div class="col-lg-4 col-md-12 col-sm-12 trim-pad video-pad">
+                <iframe width="300" height="220" src="{{link}}">
+                </iframe>
+            </div>
+            {%endfor%}
+
+        </div>
+        {%endif%}
+    </div>
+     <div class="row" style="margin-bottom:20px;"></div>
+
+     <div class="col-md-8 card mb-4  mt-3 ">
+        <div class="card-body">
+          {% if new_comment %}
+          <div class="alert alert-success" role="alert">
+            Your comment is awaiting moderation
+          </div>
+          {% else %}
+          <h3>Leave a comment</h3>
+          <form method="post" style="margin-top: 1.3em;">
+            {{ comment_form | crispy }}
+          {% csrf_token %}
+            <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+      <!-- Comment with nested comments -->
+{% for comment in comments %}
+<div class="col-md-8 card mb-4  mt-3" style="padding:30px;">
+    <div class="comments" style="padding: 10px;">
+        <p class="font-weight-bold">
+          {{ comment.user }}
+          <span class=" text-muted font-weight-normal">
+            {{ comment.created_on }}
+          </span>
+        </p>
+        {{ comment.content | linebreaks }}
+         
+      </div>
+      
+
+
+
+    {% for reply in comment.replies.all %}
+    <div class="comments" style="padding: 10px;">
+        <p class="font-weight-bold">
+          {{ reply.user }}
+          <span class=" text-muted font-weight-normal">
+            {{ reply.date }}
+          </span>
+        </p>
+        {{ reply.content | linebreaks }} 
+      </div>
+    {% endfor %}
+
+    <h5>Reply</h5>
+    <form   method="post">
+        {{ comment_form.as_p }}
+        {% csrf_token %}
+        <!-- Hidden input for parent comment.id -->
+        <input type="hidden" name="parent_id" value="{{ comment.id }}">
+        <input class="btn btn-primary" type="submit" value="Reply">
+    </form>
+</div>
+{% empty %}
+<h4>There are no comments yet.</h4>
+{% endfor %}
+    </div>
+  </div>
+ 
+    
+{%endblock%}

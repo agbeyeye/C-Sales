@@ -1,0 +1,36 @@
+from django.urls import path, include
+from . import views
+
+urlpatterns = [
+    path('', views.homePage, name="home"),
+    path('login/', views.loginUser, name="login"),
+    path('submit-vehicle/login/', views.loginUser, name="login"),
+    path('contact-us/login/', views.loginUser, name="login"),
+    path('about/login/', views.loginUser, name="login"),
+    path('logout/', views.logoutUser, name="logout"),
+    path('register/', views.registerPage, name="register"),
+    path('submit-vehicle/', views.submit_car, name='submit-vehicle'),
+    path('car-detail/', views.submit_car_detail, name='car-detail'),
+    path('vehicle-list/<str:sortBy>', views.vehicle_list, name='vehicle-list'),
+    path('vehicle-list', views.vehicle_list, name='vehicle-list'),
+    path('popular-vehicles', views.popular_vehicles, name='popular-vehicles'),
+    path('recent-vehicles', views.recent_vehicles, name='recent-vehicles'),
+    path('vehicle/<int:vehicle_id>', views.vehicle_detail, name='vehicle'),
+    # path('vehicle/', views.vehicle_detail, name='vehicle'),
+    path('car-detail/submit-car-detail/', views.submit_car_detail, name='images'),
+    path('activate/<uidb64>/<token>/',views.activate, name='activate'), 
+    path('forgetpassword/',views.forgetPassword,name='forgetpassword'),
+    path('passwordresetconfirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/',views.resetpassword_confirm,name='reset-password-confirm'),
+    path('resetpassword/reset-failed/',views.invalidReset, name = 'reset-fail'),
+    path('resetpassword/reset-done/',views.passwordresetdone,name='reset-password-done'),
+    path('resetpassword/complete/',views.passwordresetcomplete,name='reset-password-complete'),
+    path('car-pictures/',views.car_pictures,name='car-picture'),
+    path('contact-us/',views.contact_us,name='contact-us'),
+    path('sucess/',views.success,name='success'),
+    path('my-listing', views.my_listings, name='my-listing'),
+    path('vehicle-images/<int:vehicle_id>', views.vehicle_images, name='vehicle-images'),
+    path('about/',views.about,name='about'),
+    path('sold-vehicles/',views.sold_vehicles, name='sold-vehicles'),
+    path('approve/<uidb64>/<token>+(<int:vehicle_id>)+(<int:comment_id>)',views.approve,name='approve'),
+
+]

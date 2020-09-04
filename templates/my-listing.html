@@ -1,0 +1,73 @@
+{%extends "base.html" %}
+{%block styles%}
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/my-listing.css' %}">
+{% endblock %}
+
+<!-- page script-->
+{%block scripts%}
+  {%load static%}
+    <script src="{% static 'js/my-listing.js' %}"></script>
+{%endblock%}
+
+{%block userProfile%}
+
+    {% if user.is_authenticated%}
+        <div>
+            <img class="rounded" style="border-radius: 50%;width: 50px;height:50px; margin-left: 10px;" id="person" src="{{photo}}" alt="profile">
+            <p>Hi, {{user.username}}</p>                    
+        </div>
+        <hr>
+    {%endif%}
+
+{%endblock%}
+
+
+
+{%block content%}
+    {%load static%}
+    {% if listings %}
+
+      <div >
+          <!-- Gallery/Listview icons  -->
+         
+
+          <!-- cars -->
+          <section class="view-active" >
+            <h2>My Listings</h2>
+            <div class="row">
+              {%for vehicle in listings %}
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="card" >
+                      <div class="embed-responsive embed-responsive-16by9">
+                        <a href="{%url 'vehicle' vehicle_id=vehicle.id%}"><img class="card-img-top embed-responsive-item" src="media/{{vehicle.indexImage}}" alt="Car image cap"></a>
+                         <div class="bottom-left">
+                            <div><span class="enlisted-days"><i class="fa fa-clock-o" aria-hidden="true" style="color:#A9B2AC;"></i>{{vehicle.enlisted_days}} Day(s)</span>
+                             <span  class="price"><i class="fa fa-money" aria-hidden="true" style="color:#A9B2AC;"></i> $ {{vehicle.askingPrice}}</span></div>
+                         </div>
+                      </div>
+                      <div class="card-body card-bg">
+
+                        <p class="card-text car-title"> <a href="{%url 'vehicle' vehicle_id=5%}" class="" >{{vehicle.Year}} {{vehicle.make}} {{vehicle.model}}</a><br>
+                         <span>{{vehicle.engine}} {{vehicle.transmission}} </span><br>
+                        <span>{{vehicle.city}} {{vehicle.zipCode}}</span>
+                        </p>
+
+                      </div>
+                    </div>
+                </div>
+              {%endfor%}
+          
+            </div>
+          </section>
+
+          
+      </div>
+    {%else%}
+      <div class="no-listing">
+          <h2>No Listing</h2>
+          <p>You currently have not submitted any vehicle yet. Click <span><a href="{%url 'submit-vehicle'%}">here</a></span> to submit a vehicle</p>
+      </div>
+    {%endif%}
+    
+{%endblock%}

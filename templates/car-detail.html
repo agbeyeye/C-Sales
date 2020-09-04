@@ -1,0 +1,760 @@
+{%extends "base.html" %}
+
+<!--page style-->
+{%block styles%}
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/car-detail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/image-upload.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery-spinner.min.css'%}"/>
+{% endblock %}
+    <script src="{%static 'js/jquery-spinner.min.js'%}"></script>
+{%block userProfile%}
+    {% if user.is_authenticated%}
+        <div>
+            <img class="rounded" style="border-radius: 50%;width: 50px;height:50px; margin-left: 10px;" id="person" src="{{photo}}" alt="profile ">
+             <p>Hi, {{user.username}}</p>                       
+         </div>
+          <hr >
+    {%endif%}
+{%endblock%}
+
+<!-- page script-->
+{%block scripts%}
+    <script src="{% static 'js/car-detail.js' %}"></script>
+    <!-- // <script src="{% static 'js/image-upload.js' %}"></script> -->
+        <script type="text/javascript">
+         document.getElementById('pro-image').addEventListener('change', readImage, false);
+
+            $( ".preview-images-zone" ).sortable();
+
+            $(document).on('click', '.image-cancel', function() {
+                let no = $(this).data('no');
+                $(".preview-image.preview-show-"+no).remove();
+                // delete image from form data
+                provisional_formData.delete(key_list[no-1]);
+                for(var item of provisional_formData.entries())
+                {
+                    console.log("after deletion",item[0],item[1]);
+                }
+            });
+
+            // on vehicle submit
+             $('#submit').click(function() {
+                var form = $("#carForm");
+                form.validate({
+                    rules: {
+                        
+                        seller:{required:true,},
+                        name:{required:true,},
+                        financing:{required:true,},
+                        contact:{required:true,},
+                        about_rebuilt:{required:true,},
+                        terms_service:{required:true,},
+                        
+                    },
+                    messages: {
+                        
+                        seller:{required:"seller is required",},
+                        
+                        name:{required:"Field is required",},
+                        financing:{required:"Field is required",},
+                        contact:{required:"Field is required",},
+                        about_rebuilt:{required:"Field is required",},
+                        terms_service:{required:"Field is required",},
+                    
+                    }
+                });
+        //      validate form
+                if(form.valid()==true){
+                    var success_response =200;
+                    var fail_response =500;
+                    // reset provisional form data to actual form data
+                    formData = new FormData(document.querySelector('form'))
+                    for(var item of provisional_formData.entries()){formData.append('file',item[1]);}
+                    for(var item of formData.entries()){console.log(item[0],item[1]);}
+                    $.ajax({
+                      url: 'submit-car-detail/',
+                      type: 'POST',
+                      processData: false, // important
+                      contentType: false, // important
+                      data: formData,
+                      success: function(response){
+                        if(response.success){
+                            console.log(response);
+                            window.location.href = "{%url 'my-listing'%}";
+                        }
+                        else {
+                              $('#submission-error').css('display','block');
+                        }
+                      
+                      },
+                      error:function(error){
+                        // window.location.href = "{%url 'home'%}";
+                      }
+                    });
+
+                    var spinner =new jQuerySpinner({
+                      parentId:'',
+                      duration: 5000
+                    });
+                    spinner.show();
+                    spinner.hide();
+                }
+               
+            });
+             var num = 1;
+var formData;
+var provisional_formData= new FormData();
+var key_list=[]
+
+function readImage() {
+    var images={};
+    if (window.File && window.FileList && window.FileReader) {
+        var files = event.target.files; //FileList object
+        for (var i =0; i< files.length; i++) {
+            //append image file to data form
+            provisional_formData.append(files[i].name, files[i]);
+            key_list.push(files[i].name);
+        }
+        
+        
+        for(var item of provisional_formData.entries()){
+             console.log(item[0],item[1]);
+
+        }
+       
+        var output = $(".preview-images-zone");
+
+        for (let i = 0; i < files.length; i++) {
+            var file = files[i];
+            if (!file.type.match('image')) continue;
+
+            var picReader = new FileReader();
+
+            picReader.addEventListener('load', function (event) {
+                var picFile = event.target;
+                var html =  '<div class="preview-image preview-show-' + num + '">' +
+                            '<div class="image-cancel" data-no="' + num + '">x</div>' +
+                            '<div class="image-zone"><img id="pro-img-' + num + '" src="' + picFile.result + '"></div>';
+
+                output.append(html);
+                num = num + 1;
+            });
+
+            picReader.readAsDataURL(file);
+        }
+        // $("#pro-image").val('');
+    } else {
+
+        console.log('Browser not support');
+    }
+}
+
+
+    </script>
+{%endblock%}
+
+<!--login welcome msg-->
+
+{%block content%}
+    {%load static%}
+    <!--car detail code-->
+        <div class="row" id="details-container">
+            <div class="col-sm-12 col-md-8 col-lg-6 fm-mg">
+                <h3>Submit details of your vehicle here</h3>
+                <p id="submission-error" style="color:red; display:none">An error occured during vehicle submission, please try again</p>
+                <form id="carForm" method="POST" enctype="multipart/form-data" action="/car-detail/">
+                    {%csrf_token%}
+                     <!-- progressBar -->
+                    <ul id="progressbar">
+                         <li  id="make" class="active" style="color:white">Make & Model</li>
+                        <li id="info">Basic Info</li>
+                        <li id="details">Details</li>
+                        <li id="confirm">Finish</li>
+                    </ul>
+
+                    <!-- section 1 -->
+                <section>
+                    <div class="form-row">
+                        <label for="">
+                        Vehicle Year *
+                        </label>
+                        <div class="form-holder">
+                            <select name="year" id="year" class="form-control" >
+                                <option value="" class="option">choose</option>
+                                 
+                            </select>
+                            <i class="zmdi zmdi-caret-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="">
+                            Vehicle Make *
+                        </label>
+                        <div class="form-holder">
+                            <select name="make" id="vehilce-make"  onchange="fetchModels();" class="form-control">
+                                <option value="" class="option">choose</option>
+                                <option value="TOYOTA" class="option">Toyota</option>                                
+                            </select>
+                            <i class="zmdi zmdi-caret-down"></i>
+                        </div>
+                    </div>
+
+                   
+                    <div class="form-row">
+                        <label for="">
+                            Model *
+                        </label>
+                        <div class="form-holder">
+                            <select name="model" id="model-of-make" class="form-control">
+                                <option value="" class="option">choose</option>
+                                 
+                                 
+                            </select>
+                            <i class="zmdi zmdi-caret-down"></i>
+                        </div>
+                    </div>
+
+
+                    <div class="form-row">
+                        <label for="">
+                            Engine Size*
+                        </label>
+                        <input type="text" class="form-control" name="engine" >
+                    </div>
+                    <div class="form-row">
+                        <label for="">
+                            Transmission *
+                        </label>
+                        <input type="text" class="form-control" name="transmission">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="">
+                        Drive train *
+                        </label>
+                        <div class="form-holder">
+                            <select name="drive_train" id="drive_train" class="form-control" >
+                                <option value="" class="option">choose</option>
+                                <option value="FWD" class="option">FWD</option>
+                                <option value="RWD" class="option">RWD</option>
+                                <option value="AWD" class="option">AWD</option>
+                                <option value="4WD" class="option">4WD</option>
+                                <option value="Other" class="option">Other</option>
+                            </select>
+                            <i class="zmdi zmdi-caret-down"></i>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                            <label for="">
+                            What country is the vehicle currently located in? *
+                            </label>
+                        <div class="form-holder">
+                            <select name="country" id="country" class="form-control">
+                                <option value="" class="option">choose</option>
+                            
+                            </select>
+                            <i class="zmdi zmdi-caret-down"></i>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label for="">
+                            State *
+                        </label>
+                        <input type="text" class="form-control" name="state">
+                    </div>
+                    <div class="form-row">
+                        <label for="">
+                            City *
+                        </label>
+                        <input type="text" class="form-control" name="city">
+                    </div>
+                    <div class="form-row">
+                        <label for="">
+                            Zip Code *
+                        </label>
+                        <input type="text" class="form-control" name="code">
+                    </div>
+
+                    <input type="button" name="next" class="next btn" value="Next Step" style="float:right;margin-top:10px;" />
+            </section>
+
+            <!-- second section -->
+            <section>
+                <div class="form-holder">
+                        <label for="">
+                        Chassis Number/VIN? *
+                        </label>
+                        <input type="text" class="form-control" name="vin">
+                </div>
+
+                <div class="form-holder">
+                    <label for="">
+                    Current Miles/Kilometers *
+                    </label>
+                    <input type="text" class="form-control" name="mileage">
+                </div>
+                       
+                <div class="form-row">
+                    <label for="">
+                    Vechile's Title *
+                    </label>
+                    <div class="form-holder">
+                        <select name="title" id="title" class="form-control">
+                            <option value="" class="option">choose</option>
+                            <option value="Clean" class="option">Clean</option>
+                            <option value="Rebuilt" class="option">Rebuilt</option>
+                            <option value="Salvage" class="option">Salvage</option>
+                            <option value="Branded" class="option">Branded</option>
+                            <option value="Other" class="option">Other</option>
+                        </select>
+                    </div>
+                
+                </div>
+                    
+                <div class="form-row">
+                        <label for="">
+                        Fuel Type *
+                        </label>
+                        <div class="form-holder">
+                            <select name="fuel_type" id="fuel_type" class="form-control">
+                                <option value="" class="option">choose</option>
+                                <option value="Gasoline" class="option">Gasoline</option>
+                                <option value="Diesel" class="option">Diesel</option>
+                                <option value="Electric" class="option">Electric</option>
+                                <option value="Hybrid" class="option">Hybrid</option>
+                                <option value="Other" class="option">Other</option>                                
+                            </select>
+                        </div>
+                </div>
+
+                <div class="form-holder hide-element"  id="other-fuel-container">
+                        <label for="">
+                        Other Fuel Type *
+                        </label>
+                        <input type="text" class="form-control" name="other_fuel_type">
+                </div>
+                        
+                <div class="form-holder">
+                        <label for="">
+                        Trim/Package *
+                        </label>
+                        <input type="text" class="form-control" name="trim">
+                </div>
+
+                <div class="form-holder">
+                        <label for="">
+                        Exterior Color/Type *
+                        </label>
+                        <input type="text" class="form-control" name="exterior_color">
+                </div>
+
+                <div class="form-holder">
+                        <label for="">
+                        Interior Color/Type *
+                        </label>
+                        <input type="text" class="form-control" name="interior_color">
+                </div>
+
+                <div class="form-row upload">
+                     <input type="file" id="pro-image" name="pro_image" style="opacity:0" class="form-control" multiple>
+                    <label for="">
+                        Upload Your Car Images Here *
+                        </label>
+                    <fieldset class="form-group">
+                        <a href="javascript:void(0)" onclick="$('#pro-image').click()" class="btn btn-primary">Browse</a>
+                       
+                    </fieldset>
+                    <div class="preview-images-zone">
+
+
+                    </div>
+                </div>
+
+                    
+                 <input type="button" name="previous" class="previous btn" value="Previous Step" style="margin-top:10px;"/>
+                  <input type="button" name="next" class="next btn" value="Next Step" style="float:right;margin-top:10px;" />
+            </section>
+
+            <!-- third section -->
+            <section>
+                <div class="form-row form-group">
+                    <div class="form-holder">
+                            <label for="">
+                            Asking Price *<span style="font-weight:normal;font-size:13px;">(please enter amount in US Dollars)</span>
+                            </label>
+                            <input type="text" class="form-control" name="asking_price">
+                    </div>
+
+                    <div class="form-holder checkbox">
+                         <label><input type="hidden" value="" name="price_negotiation"><input type="checkbox" value="True" name="price_negotiation">Price Negotiable</label>
+                    </div>
+
+                   <div class="form-row">
+                        <label for="">
+                        Wheel Alignment? *
+                        </label>
+                        <div class="form-holder">
+                            <select name="wheel_alignment" id="wheel_alignment" class="form-control">
+                            <option value="" class="option">Choose</option>
+                            <option value="Yes,pass" class="option">Yes,pass</option>
+                            <option value="“No, alignment has not been done yet" class="option">No, alignment has not been done yet</option>
+                        </select>
+
+                        </div>
+                    </div>
+
+                    <div class="form-holder">
+
+                      <label for="upgrade">Specify any upgrade <span style="font-weight:normal;font-size:13px;">(exterior mods, aftermarket audio,
+                        performance, suspension, exhaust, etc) Please be specific and separate each item by a comma ','</span></label>
+                      <textarea class="form-control" rows="4" id="upgrade" name="upgrade"></textarea>
+
+                    </div>
+
+                    <div class="form-row">
+                        <label for="">
+                        Did the vehicle have any kind of repairs? *
+                        </label>
+                        <div class="form-holder">
+                            <select name="repair_status" id="repair_status" class="form-control">
+                                <option value="" class="option">choose</option>
+                                <option value="yes" class="option">Yes</option>
+                                <option value="no" class="option">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-holder hide-element" id="repair-container">
+
+                      <label for="repair">Specify any repairs made <span style="font-weight:normal;font-size:13px;">(Please be specific and separate each item using a ',')*</span></label>
+                      <textarea class="form-control" rows="4" id="repair" name="repair"></textarea>
+                    </div>
+
+                    <div class="form-holder">
+
+                      <label for="">Any recent service/maintenance details you can provide? (<span style="font-weight:normal;font-size:13px;">(Please be specific and separate each item using ',')</span></label>
+                      <textarea class="form-control" rows="4" id="recent_service" name="recent_service"></textarea>
+
+                    </div>
+
+                    <div class="form-holder">
+                      <label for="flaws">Known Flaws <span style="font-weight:normal;font-size:13px;">(Please be specific and separate each item by ',')</span></label>
+                      <textarea class="form-control" rows="4" id="flaws" name="flaws"></textarea>
+                    </div>
+
+                    <div class="form-holder">
+                        <label for="">
+                        Please provide any further info or insight about the
+                            Vehicle <span style="font-weight:normal;font-size:13px;">(features, ownership history, purchasing details, financing
+                            options, included items, etc)</span>
+                        </label>
+                         <textarea class="form-control" rows="4" id="extraInfo" name="extra_info"></textarea>
+                    </div>
+
+
+                </div>
+                <input type="button" name="previous" class="previous btn" value="Previous Step" style="     margin-top:10px;"/>
+                <input type="button" name="next" class="next btn" value="Next Step" style="float:right;margin-top:10px;" />
+            </section>
+
+            <!-- fourth section -->
+            <section>
+                <div class="form-row form-group">
+                    <div class="form-holder">
+                        <label for="">
+                            Your Name *
+                        </label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                </div>
+
+                <div class="form-row form-group">
+                    <div class="form-holder">
+                        <label for="">
+                            Phone Number *
+                        </label>
+                        <input type="text" class="form-control" name="contact">
+                    </div>
+                </div>
+
+                <div class="form-holder checkbox">
+                     <label><input type="hidden" value="" name="hide_contact"><input type="checkbox" value="True" name="hide_contact">Hide Contact</label>
+                </div>
+
+                <div class="form-row">
+                        <label for="">
+                        Type of seller *
+                        </label>
+                    <div class="form-holder">
+                        <select name="seller" id="seller" class="form-control">
+                            <option value="" class="option">choose</option>
+                            <option value="Dealer" class="option">Dealer</option>
+                            <option value="Private" class="option">Private</option>
+                            
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row hide-element" id="financing-container">
+                        <label for="">
+                        Is financing an option for this vehicle? *
+                        </label>
+                    <div class="form-holder">
+                        <select name="financing" id="financing" class="form-control">
+                            <option value="" class="option">choose</option>
+                            <option value="Yes" class="option">Yes</option>
+                            <option value="No" class="option">No</option>                              
+                        </select>
+                    </div>
+                </div>
+                    
+               <div class="form-row " id="link_container">
+                    <label for="">
+                        Please provide any links to videos of the vehicle.<span style="font-weight:normal;font-size:13px;"> (Youtube or Vimeo), please separate links using ','</span>
+                    </label>
+                    <input type="text" class="form-control" name="video_link" id="video_link">
+                </div>
+
+                <div class="form-holder checkbox">
+                     <label><input type="hidden" value="" name="service_contract"><input type="checkbox" value="True" name="service_contract">Servicing contract available for this car</label>
+                </div>
+
+                <div class="form-row form-group">
+                    <div class="form-holder">
+                        <label for="">
+                        Rebuilding Link
+                        </label>
+                        <input type="text" class="form-control"  name="rebuilding_link">
+                    </div>
+                </div>
+
+               <div class="form-row form-group">
+                    <div class="form-holder">
+                        <label for="">
+                            How did you hear about RebuiltExotics.com? *
+                        </label>
+                        <input type="text" class="form-control" name="about_rebuilt">
+                    </div>
+                </div>
+
+                <div class="form-holder checkbox">
+                     <label><input type="checkbox" value="True" name="terms_service">Accept terms and service</label>
+                </div>
+
+                 <input type="button" name="previous" class="previous btn" value="Previous Step" style="margin-top:10px;" />
+                  <input type="button" name="submit" id="submit" class="submit btn" value="Submit" style="margin-top:10px;" />
+            </section>
+        </form>
+    </div>
+
+    <!-- side container images -->
+    <div class="sideImages col-lg-4">
+        <div class="cars-aside">
+            <hr>
+            <p>Recently added on Rebuilt Exotics</p>
+           
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front embed-responsive embed-responsive-4by3">
+                                <img class="card-img embed-responsive-item" src="{% static 'images/car2.jpg'%}" alt="Card image cap">
+                            </div>
+                            <div class="flip-card-back">
+                                2017 Audi A4 2.0T Quattro Sedan
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                     <div class="card flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front embed-responsive embed-responsive-4by3">
+                                <img class="card-img embed-responsive-item" src="{% static 'images/car2.jpg'%}" alt="Card image cap">
+                            </div>
+                            <div class="flip-card-back">
+                                2017 Audi A4 2.0T Quattro Sedan
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front embed-responsive embed-responsive-4by3">
+                                <img class="card-img embed-responsive-item" src="{% static 'images/car3.jpg'%}" alt="Card image cap">
+                            </div>
+                            <div class="flip-card-back">
+                                2017 Audi A4 2.0T Quattro Sedan
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                     <div class="card flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front embed-responsive embed-responsive-4by3">
+                                <img class="card-img embed-responsive-item" src="{% static 'images/car2.jpg'%}" alt="Card image cap">
+                            </div>
+                            <div class="flip-card-back">
+                                2017 Audi A4 2.0T Quattro Sedan
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front embed-responsive embed-responsive-4by3">
+                                <img class="card-img embed-responsive-item" src="{% static 'images/car2.jpg'%}" alt="Card image cap">
+                            </div>
+                            <div class="flip-card-back">
+                                2017 Audi A4 2.0T Quattro Sedan
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                     <div class="card flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front embed-responsive embed-responsive-4by3">
+                                <img class="card-img embed-responsive-item" src="{% static 'images/car6.jpg'%}" alt="Card image cap">
+                            </div>
+                            <div class="flip-card-back">
+                               2017 Audi A4 2.0T Quattro Sedan
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                     <div class="card flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front embed-responsive embed-responsive-4by3">
+                                <img class="card-img embed-responsive-item" src="{% static 'images/car5.jpg'%}" alt="Card image cap">
+                            </div>
+                            <div class="flip-card-back">
+                                2017 Audi A4 2.0T Quattro Sedan
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front embed-responsive embed-responsive-16by9">
+                                <img class="card-img embed-responsive-item" src="{% static 'images/car2.jpg'%}" alt="Card image cap">
+                            </div>
+                            <div class="flip-card-back">
+                                2017 Audi A4 2.0T Quattro Sedan
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+   </div>
+   <script type="text/javascript">
+   var date= new Date();
+  console.log(date);
+    for(y =1900; y <= 2500; y++) {
+            var optn = document.createElement("OPTION");
+            optn.text = y;
+            optn.value = y;
+            
+            // if year is 2015 selected
+            if (y === date.getFullYear()) {
+                optn.selected = true;
+            }
+            
+            document.getElementById('year').options.add(optn);
+    }
+    
+    function createNode(element) {
+      return document.createElement(element);
+  }
+
+  fetch('https://restcountries.eu/rest/v2/all',)
+  .then((resp) => resp.json())
+  .then(function(data) {
+     
+     
+    
+    return data.map(function(country) {
+        var opt = document.createElement("OPTION");
+    
+      opt.text=country.name;
+      opt.value =country.name;
+          
+      document.getElementById('country').options.add(opt);
+    })
+  })
+  .catch(function(error) {
+    console.log('Error ---',JSON.stringify(error));
+  });  
+
+
+ 
+   
+  fetch('https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=json',)
+  .then((resp) => resp.json())
+  .then(function(data) {
+     
+    let makes = data.Results;
+    
+    return makes.map(function(make) {
+        var opt = document.createElement("OPTION");
+    
+      opt.text=make.Make_Name;
+      opt.value =make.Make_Name;
+          
+      document.getElementById('vehilce-make').options.add(opt);
+    })
+  })
+  .catch(function(error) {
+    console.log('Error ---',JSON.stringify(error));
+  });  
+
+fetchModels=()=>{
+    var e =document.getElementById("vehilce-make");
+var user_choice = e.options[e.selectedIndex].value;
+ 
+ 
+    console.log('USER CHOICE -----',user_choice);
+    fetch('https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/'+user_choice.toLowerCase()+'?format=json',)
+  .then((resp) => resp.json())
+  .then(function(data) {
+      console.log(data);
+    let models = data.Results;
+    
+    return models.map(function(model) {
+        var opt = document.createElement("OPTION");
+      console.log(model.Model_Name);
+      opt.text=model.Model_Name;
+      opt.value =model.Model_Name;
+          
+      document.getElementById('model-of-make').options.add(opt);
+    })
+  })
+  .catch(function(error) {
+    console.log('Error ---',JSON.stringify(error));
+  });      
+}
+ 
+</script>
+     
+            
+
+    <!--end of code-->
+{%endblock%} 

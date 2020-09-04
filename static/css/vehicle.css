@@ -1,0 +1,74 @@
+.side-img{
+  margin-left:5px;
+}
+
+.all-photo-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+table{
+  margin-top: 30px;
+  font-size: 16px;
+
+}
+
+.row-label{
+  background-color: #EFEFEF;
+  font-weight: bold;
+}
+
+
+.trim-pad{
+  padding:0px;
+}
+
+.profile-photo img{
+  border-radius: 50%;
+  width: 50px;
+  height:50px;
+  /*margin-left: 10px;*/
+}
+
+.seller-profile{
+  background-color: #EFEFEF;
+  border-radius: 5px;
+}
+
+ul{
+  font-size: 16px;
+}
+p{
+  font-size: 16px;
+}
+
+h3{
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 1000px) {
+   .small-screen-show{
+        display: none;
+   }
+
+   .sm-index-img{
+      display: none;
+   }
+ 
+}
+
+@media only screen and (max-width: 999px) {
+   .big-screen-show{
+        display: none;
+   }  
+
+   .lg-index-img{
+    display: none;
+   }
+}

@@ -1,0 +1,264 @@
+#progressbar li{
+    list-style-type: none;
+    display: inline;
+    margin: 5 10 5 0;
+    border: 2px solid black;
+    padding: 5px;
+    border-radius: 2px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-color: #b70b1f;
+    color:#b70b1f;
+    margin-right: 10px;
+}
+
+
+
+#progressbar{
+    margin-left: 0px;
+    padding-left: 0px;
+    margin-bottom: 18px;
+}
+
+input{
+    margin-bottom:5px;
+}
+
+.active{
+  color: white;
+ background-color: #b70b1f;
+ 
+}
+
+#progressbar{
+    margin-top: 30px;
+}
+
+#carForm section:not(:first-of-type) {
+    display: none
+}
+
+.form-row{
+    margin-top: 7px;
+}
+
+.lg{
+    /*margin-top: 7px;*/
+}
+
+.next{
+  float: right;
+  background-color: #b70b1f;
+  color: white;
+  padding: 5px;
+}
+
+section{
+  margin-bottom: 10px;
+}
+
+.option-base{
+  display: none;
+}
+
+
+.next-container{
+  padding: 5px;
+  float: right;
+}
+.previous{
+  float: left;
+  background-color: #b70b1f;
+  color: white;
+  padding: 5px;
+}
+
+.submit{
+  float: right;
+  background-color: #b70b1f;
+  color: white;
+  padding: 5px;
+}
+
+/*Image upload */
+.preview-images-zone {
+    width: 100%;
+    border: 1px solid #ddd;
+    min-height: 180px;
+    /* display: flex; */
+    padding: 5px 5px 0px 5px;
+    position: relative;
+    overflow:auto;
+}
+.preview-images-zone > .preview-image:first-child {
+    height: 185px;
+    width: 185px;
+    position: relative;
+    margin-right: 5px;
+}
+.preview-images-zone > .preview-image {
+    height: 90px;
+    width: 90px;
+    position: relative;
+    margin-right: 5px;
+    float: left;
+    margin-bottom: 5px;
+}
+.preview-images-zone > .preview-image > .image-zone {
+    width: 100%;
+    height: 100%;
+}
+.preview-images-zone > .preview-image > .image-zone > img {
+    width: 100%;
+    height: 100%;
+}
+.preview-images-zone > .preview-image > .tools-edit-image {
+    position: absolute;
+    z-index: 100;
+    color: #fff;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    display: none;
+}
+.preview-images-zone > .preview-image > .image-cancel {
+    font-size: 18px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-weight: bold;
+    margin-right: 10px;
+    cursor: pointer;
+    display: none;
+    z-index: 100;
+}
+.preview-image:hover > .image-zone {
+    cursor: move;
+    opacity: .5;
+}
+.preview-image:hover > .tools-edit-image,
+.preview-image:hover > .image-cancel {
+    display: block;
+}
+.ui-sortable-helper {
+    width: 90px !important;
+    height: 90px !important;
+}
+
+
+.frm-mg{
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+
+.image-container {
+    padding-top: 50px;
+}
+
+.upload{
+    width: 100%;
+}
+
+/*form validation error*/
+form .error {
+  color: #ff0000;
+  font-size: 12px;
+}
+
+/*medium devices*/
+@media (min-width: 576px) and (max-width: 991.98px) {
+   
+   .sideImages{
+    display: none;
+  }
+}
+
+/*small devices*/
+@media (max-width: 575.98px){
+    .sideImages{
+    display: none;
+  }
+}
+.page-container{
+  width:100%;
+  height:100%; 
+  background-color:#EFEFEF;
+}
+/*cars aside*/
+
+.cars-aside{
+    margin-top: 40px;
+}
+
+.cars-aside hr{
+    height: 5px;
+    border: none;
+    width: 100%;
+    background-color: #b70b1f;
+}
+
+.cars-aside p{
+    font-size: 14px;
+    /*margin-left: 15px;*/
+    text-align: center;
+}
+
+.cars-aside .card img{
+    height: 100%;
+    height: 100%;
+    object-fill:contain;
+}
+
+
+/*flipping card*/
+.flip-card {
+  background-color: transparent;
+  width: 140px;
+  height: 130px;
+  border: 1px solid #f1f1f1;
+  perspective: 1000px;
+  margin: 5px 5px 10px 5px;
+}
+
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+/* Style the back side */
+.flip-card-back {
+  background-color: dodgerblue;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.hide-element{
+  display: none;
+}
